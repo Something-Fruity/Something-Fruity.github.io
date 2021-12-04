@@ -1,6 +1,6 @@
-# Something-Fruity
+# Something Fruity
 
-This will be the repo for our project.
+## Assignment Brief:
 
-The requirements are here:
+## Customer Requirements:
 
