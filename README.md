@@ -17,5 +17,5 @@ Sounds should be able to be muted from the UI with a single keypress.
 Additional languages should be available as free downloadable packs.
 
 Angela is a 35 year old mum. She wants the game to keep her son busy.  
-Jenna is a five year old girl. She doesn’t want to have to ask mum for help.
+Jenna is a 5 year old girl. She doesn’t want to have to ask mum for help.
 
