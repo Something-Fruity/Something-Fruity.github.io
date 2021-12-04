@@ -1,4 +1,4 @@
-# Something-Fruity.github.io
+# Something-Fruity
 
 This will be the repo for our project.
 
