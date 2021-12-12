@@ -19,3 +19,23 @@ The customer should have ability to interact with the toy through an interface, 
 - [ ] Angela is a 35 year old mum. She wants the game to keep her son busy.  
 - [ ] Jenna is a 5 year old girl. She doesn’t want to have to ask mum for help.
 
+## How to install and run the code:
+
+1. Clone repository:
+ - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
+2. Create virual environment:
+ - go inside the folder created by cloning github repository
+ - run in command line: python3 -m venv [directory]
+   - e.g. python3 -m venv venv
+3. Activate virtual environment:
+ - in command line: 
+  - Linux/MacOS: source venv/bin/activate
+  - Windows: venv\Scripts\activate.bat
+4. Install requirements in virtual environment:
+ - pip install -r requirements
+5. Set environment variables:
+ - export FLASK_APP=flaskr.app
+ - export FLASK_ENV=development
+6. Start the server:
+ - flask run
+
