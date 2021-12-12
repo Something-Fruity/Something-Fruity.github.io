@@ -19,28 +19,29 @@ Session(app)
 def home():
     return redirect('/register')
 
-
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """Login with username and password"""
     global CURRENT_USER
     # Forget any stored or cached user_ids
     session.clear()
-    return render_template('login.html')
+    return render_template('auth/login.html')
 
 
 @app.route('/register')
 def register():
     """Register for a new account"""
-    return render_template('register.html')
+    return render_template('auth/register.html')
 
 
 @app.route('/logout')
 def logout():
     """Log user out"""
     global CURRENT_USER
-
     # Clear the current user's details
     session.clear()
     # Redirect user to login form
-    return redirect('/login')
+    return redirect('auth/login')
+#
+#if __name__ == "__main__":
+#    app.run(host='0.0.0.0', debug=True)
