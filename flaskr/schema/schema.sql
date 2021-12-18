@@ -1,4 +1,6 @@
 -- Allows tables to be created in any order withough dependencies being enforced
+CREATE DATABASE IF NOT EXISTS sth_fruity;
+use sth_fruity;
 SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS account;
@@ -49,6 +51,6 @@ INSERT INTO `account` VALUES (1,'WhiteFamily','123456','Walter','White','heisenb
 
 INSERT INTO `player` VALUES (1, 1,'Skylar'), (2, 1,'Pinkman');
 
-INSERT INTO `history` VALUES (1, 1, 1, 15005, 7, '2021-01-01'), (2, 1, 2, 11105, 5, '2021-05-01'), (3, 2, 1, 15805, 7, '2021-25-01'), (4, 2, 2, 19905, 9, '2021-03-01');
+INSERT INTO `history` VALUES (1, 1, 1, 15005, 7, '2021-01-01'), (2, 1, 2, 11105, 5, '2021-05-01'), (3, 2, 1, 15805, 7, '2021-01-21'), (4, 2, 2, 19905, 9, '2021-03-01');
 
-INSERT INTO `persona` VALUES (1, 'Simba', 'lion'), (2, 'Dumbo', 'elephant'), (3, 'Tom', 'cat'');
+INSERT INTO `persona` VALUES (1, 'Simba', 'lion'), (2, 'Dumbo', 'elephant'), (3, 'Tom', 'cat');
