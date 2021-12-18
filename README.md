@@ -19,7 +19,19 @@ The customer should have ability to interact with the toy through an interface, 
 - [ ] Angela is a 35 year old mum. She wants the game to keep her son busy.  
 - [ ] Jenna is a 5 year old girl. She doesn’t want to have to ask mum for help.
 
-## How to install and run the code:
+## How to install and run the code using DOCKER:
+
+1. Clone repository:
+ - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
+2. Inside the project folder:
+ - Create image using docker setup files:
+  - Linux/MacOs: sudo docker-compose build --no-cache
+  - Windows: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ - run images: 
+  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app
+
+
+## How to install and run the code without DOCKER:
 
 1. Clone repository:
  - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
