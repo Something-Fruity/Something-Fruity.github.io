@@ -18,7 +18,7 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: sth-fruity
+            MYSQL_DATABASE: sth_fruity
         ports:
             - '3308:3306'
         volumes:
