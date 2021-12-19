@@ -25,10 +25,11 @@ The customer should have ability to interact with the toy through an interface, 
  - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
 2. Inside the project folder:
  - Create image using docker setup files:
-  - Linux/MacOs: sudo docker-compose build --no-cache
-  - Windows: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   - Linux/MacOs: sudo docker-compose build --no-cache
+   - Windows: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  - run images: 
-  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app
+   - Linux/MacOs: sudo docker-compose up
+<!---  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app -->
 
 
 ## How to install and run the code without DOCKER:
@@ -44,7 +45,7 @@ The customer should have ability to interact with the toy through an interface, 
   - Linux/MacOS: source venv/bin/activate
   - Windows: venv\Scripts\activate.bat
 4. Install requirements in virtual environment:
- - pip install -r requirements
+ - pip install -r flaskr\requirements
 5. Set environment variables:
  - export FLASK_APP=flaskr.app
  - export FLASK_ENV=development
