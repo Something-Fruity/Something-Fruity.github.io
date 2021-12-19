@@ -1,6 +1,7 @@
--- Allows tables to be created in any order withough dependencies being enforced
+-- Allows tables to be created in any order without dependencies being enforced
 CREATE DATABASE IF NOT EXISTS sth_fruity;
 use sth_fruity;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS account;
@@ -12,7 +13,7 @@ DROP TABLE IF EXISTS persona;
 CREATE TABLE account (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR (20) UNIQUE NOT NULL,
-    hash VARCHAR(100) NOT NULL,
+    hash VARCHAR(500) NOT NULL,
     f_name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL
@@ -47,9 +48,10 @@ CREATE TABLE persona (
 
 
 -- Insert sample data
-INSERT INTO `account` VALUES (1,'WhiteFamily','123456','Walter','White','heisenberg@hotmail.com');
+INSERT INTO `account` VALUES (1,'WhiteFamily','pbkdf2:sha256:260000$jVVzEctPpRhOWilC$c6bfc6097150f09f34f51d64cad272c812fb828b50fea38f0a00dca656fb384b','Walter','White','heisenberg@hotmail.com'),
+                             (2,'SimpsonFamily','pbkdf2:sha256:260000$M3WYwna0COf6CWoK$6194a11836ac29c5b745bbe035fcc06eec13259c50fc3189769f60465e2aa80e','Homer','Simpson','homer@donuts.com');
 
-INSERT INTO `player` VALUES (1, 1,'Skylar'), (2, 1,'Pinkman');
+INSERT INTO `player` VALUES (1, 1,'Skylar'), (2, 1,'Pinkman'), (3, 2, 'Bart'), (4, 2, 'Lisa');
 
 INSERT INTO `history` VALUES (1, 1, 1, 15005, 7, '2021-01-01'), (2, 1, 2, 11105, 5, '2021-05-01'), (3, 2, 1, 15805, 7, '2021-01-21'), (4, 2, 2, 19905, 9, '2021-03-01');
 
