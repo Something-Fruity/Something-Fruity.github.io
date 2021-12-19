@@ -11,6 +11,12 @@ app=Flask(__name__)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = "root"
+app.config["MYSQL_HOST"] = "172.19.0.2"
+app.config["MYSQL_PORT"] = 3306
+app.config["MYSQL_DB"] = "sth_fruity"
+mysql = MySQL(app)
 Session(app)
 
 
@@ -42,6 +48,14 @@ def logout():
     session.clear()
     # Redirect user to login form
     return redirect('auth/login')
+    
+@app.route('/users')
+def show_users():
+    cur = mysql.connection.cursor()
+    cur.execute('''SELECT * FROM account''')
+    rv = cur.fetchall()
+    return str(rv)
+    
 #
 #if __name__ == "__main__":
 #    app.run(host='0.0.0.0', debug=True)
