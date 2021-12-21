@@ -103,10 +103,13 @@ def register():
 
 @app.route("/", methods=["GET", "POST"])
 @app.route("/account", methods=["GET", "POST"])
-def home(account):
-    if request.method == "GET":
-        return render_template('account.html', account=account)
-
+def home():
+    if "account_id" in session:
+        results = db_select(mysql, "SELECT * FROM account WHERE id = %s", "2")
+        accounts = Account(results[0])
+        return render_template('account.html', account=accounts)
+    else:
+        return render_template('auth/login.html')
 
 @app.route('/logout')
 def logout():
@@ -121,6 +124,7 @@ def logout():
     
 @app.route('/users')
 def show_users():
+    print(session)
     cur = mysql.connection.cursor()
     cur.execute('''SELECT * FROM account''')
     rv = cur.fetchall()
