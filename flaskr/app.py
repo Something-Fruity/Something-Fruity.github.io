@@ -8,6 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.classes import Account
 from flaskr.helper import apology
+from flaskr.database_helper import db_select, db_commit
 
 
 app = Flask(__name__)
@@ -44,7 +45,7 @@ def login():
 
         # Query database for student_id
         cmd = "SELECT * FROM account WHERE username =%s"
-        results = db_select(cmd, [username])
+        results = db_select(mysql, cmd, [username])
 
         if len(results) != 1:
             return apology("invalid details", 403)
@@ -85,15 +86,15 @@ def register():
             return apology("password and confirmation do not match", 403)
 
         # check username is unique
-        if db_select("SELECT * FROM account WHERE username = %s", [new_username]):
+        if db_select(mysql, "SELECT * FROM account WHERE username = %s", [new_username]):
             return apology("you already have an account", 403)
 
         # create row in db
-        db_commit("INSERT INTO account(username, hash, f_name, surname, email) VALUES (%s, %s, %s, %s, %s)",
+        db_commit(mysql, "INSERT INTO account(username, hash, f_name, surname, email) VALUES (%s, %s, %s, %s, %s)",
                   new_account.get_details())
 
         # make sure that the new user is logged in
-        results = db_select("SELECT * FROM account WHERE username = %s", [new_account.username])
+        results = db_select(mysql, "SELECT * FROM account WHERE username = %s", [new_account.username])
 
         # # set the session, so we know who is logged-in
         session["account_id"] = results[0][0]
@@ -116,20 +117,6 @@ def logout():
     return redirect("/login")
 
 
-def db_select(cmd, params):
-    cursor = mysql.connection.cursor()
-    cursor.execute(cmd, params)
-    results = cursor.fetchall()
-    cursor.close()
-    return results
-
-
-def db_commit(cmd, params):
-    cursor = mysql.connection.cursor()
-    cursor.execute(cmd, params)
-    mysql.connection.commit()
-    cursor.close()
-    return
 
     
 @app.route('/users')
