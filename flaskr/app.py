@@ -102,6 +102,14 @@ def register():
 
 
 @app.route("/", methods=["GET", "POST"])
+def index():
+    if "account_id" in session:
+        results = db_select(mysql, "SELECT * FROM account WHERE id = %s", "2")
+        accounts = Account(results[0])
+        return render_template('game.html', account=accounts)
+    else:
+        return render_template('auth/login.html')
+    return render_template('game.html')
 @app.route("/account", methods=["GET", "POST"])
 def home():
     if "account_id" in session:
