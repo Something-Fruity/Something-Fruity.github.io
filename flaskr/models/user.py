@@ -1,12 +1,13 @@
 from sqlalchemy import Column, String, Integer, DateTime
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.models.base import Base
+from flask_login import UserMixin
 
 from flaskr.helpers.helpers import is_valid_email
 
 
-class Account(Base):
-    __tablename__ = 'account'
+class User(UserMixin, Base):
+    __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
     username = Column(String)
