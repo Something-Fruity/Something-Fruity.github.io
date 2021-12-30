@@ -1,15 +1,15 @@
+from flask import Flask, render_template, request, redirect, flash
+from flask_login import login_required, logout_user, current_user, login_user, LoginManager
 
-from flask import Flask, render_template, session, request, redirect, flash
-from flask_mysqldb import MySQL
-from flask_session import Session
 from tempfile import mkdtemp
 
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import generate_password_hash
 
-from flaskr.classes import Account
-from flaskr.helper import apology
-from flaskr.database_helper import db_select, db_commit
+from flaskr.models.base import Session
+from flaskr.models.user import User
 
+from flaskr.labels import messages
+from datetime import date
 
 app = Flask(__name__)
 
@@ -23,41 +23,35 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "root"
-app.config["MYSQL_HOST"] = "172.19.0.2"
-app.config["MYSQL_PORT"] = 3306
+app.config["MYSQL_HOST"] = "127.0.0.1"
 app.config["MYSQL_DB"] = "sth_fruity"
-mysql = MySQL(app)
-Session(app)
+
+app.secret_key = 'super secret key'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+session = Session()
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
-
-    # Forget any user_id
-    session.clear()
-
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        if not username and password:
-            return apology("incomplete details", 403)
 
         # Query database for student_id
-        cmd = "SELECT * FROM account WHERE username =%s"
-        results = db_select(mysql, cmd, [username])
+        user = session.query(User).filter_by(username=username).first()
 
-        if len(results) != 1:
-            return apology("invalid details", 403)
-
-        account = Account(results[0])
-        if check_password_hash(password, account.hash):
-            return apology("incorrect password", 403)
-
-        # Remember which user has logged in
-        session["account_id"] = account.id
-
-        return render_template("account.html", account=account)
+        if user and user.check_password(password):
+            flash(f'Welcome, {user.username}.', 'alert-success')
+            session.query(User).filter_by(username=username).update({'last_login': date.today()})
+            session.commit()
+            login_user(user)
+            return redirect("/account")
+        else:
+            flash(messages.INCORRECT_DETAILS, 'alert-danger')
+            return render_template('auth/login.html')
 
     else:
         return render_template('auth/login.html')
@@ -77,64 +71,58 @@ def register():
         new_email = request.form.get("email")
 
         if new_username == '' or new_password == '' or new_f_name == '' or new_surname == '' or new_email == '':
-            return apology('must complete all fields', 403)
+            flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
+            return render_template('auth/register.html')
 
-        new_account = Account(new_username, new_password, new_f_name, new_surname, new_email)
+        # check username is not already in use
+        if session.query(User).filter_by(username=new_username).first():
+            flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
+            return render_template('auth/register.html')
 
         # check password and confirmation are same
         if request.form.get("password") != request.form.get("confirm-password"):
-            return apology("password and confirmation do not match", 403)
+            flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
+            return render_template('auth/register.html')
 
-        # check username is unique
-        if db_select(mysql, "SELECT * FROM account WHERE username = %s", [new_username]):
-            return apology("you already have an account", 403)
+        user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
+        session.add(user)
+        login_user(user)
+        session.commit()
 
-        # create row in db
-        db_commit(mysql, "INSERT INTO account(username, hash, f_name, surname, email) VALUES (%s, %s, %s, %s, %s)",
-                  new_account.get_details())
-
-        # make sure that the new user is logged in
-        results = db_select(mysql, "SELECT * FROM account WHERE username = %s", [new_account.username])
-
-        # # set the session, so we know who is logged-in
-        session["account_id"] = results[0][0]
-        return render_template("account.html", account=new_account)
+        return render_template("account.html", account=user)
 
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
-    if "account_id" in session:
-        results = db_select(mysql, "SELECT * FROM account WHERE id = %s", "2")
-        accounts = Account(results[0])
-        return render_template('game.html', account=accounts)
-    else:
-        return render_template('auth/login.html')
-    return render_template('game.html')
+    return redirect('/account')
+
+
 @app.route("/account", methods=["GET", "POST"])
+@login_required
 def home():
-    if "account_id" in session:
-        results = db_select(mysql, "SELECT * FROM account WHERE id = %s", "2")
-        accounts = Account(results[0])
-        return render_template('account.html', account=accounts)
-    else:
-        return render_template('auth/login.html')
+    return render_template('account.html', account=current_user)
+
 
 @app.route('/logout')
+@login_required
 def logout():
     """Log user out"""
-    # Clear the current user's details
-    session.clear()
+    logout_user()
     # Redirect user to login form
     return redirect("/login")
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    """Check if user is logged-in on every page load."""
+    if user_id is not None:
+        return session.query(User).get(user_id)
+    return None
 
-    
-@app.route('/users')
-def show_users():
-    print(session)
-    cur = mysql.connection.cursor()
-    cur.execute('''SELECT * FROM account''')
-    rv = cur.fetchall()
-    return str(rv)
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    """Redirect unauthorized users to Login page."""
+    flash(messages.NOT_LOGGED_IN, 'alert-danger')
+    return redirect('/login')
