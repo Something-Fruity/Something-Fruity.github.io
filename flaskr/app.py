@@ -110,6 +110,8 @@ def index():
     else:
         return render_template('auth/login.html')
     return render_template('game.html')
+
+
 @app.route("/account", methods=["GET", "POST"])
 def home():
     if "account_id" in session:
@@ -118,6 +120,7 @@ def home():
         return render_template('account.html', account=accounts)
     else:
         return render_template('auth/login.html')
+
 
 @app.route('/logout')
 def logout():
