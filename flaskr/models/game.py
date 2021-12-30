@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Date, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
-from flaskr.classes.base import Base
+from flaskr.models.base import Base
 
 
 class Game(Base):

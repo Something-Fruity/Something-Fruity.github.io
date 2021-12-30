@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
-from flaskr.classes.base import Base
+from flaskr.models.base import Base
 
 
 class Player(Base):
