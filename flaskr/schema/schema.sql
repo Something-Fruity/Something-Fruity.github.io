@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS player;
-DROP TABLE IF EXISTS history;
+DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS persona;
 
 -- Create tables
@@ -28,7 +28,7 @@ CREATE TABLE player(
 );
 
 
-CREATE TABLE history(
+CREATE TABLE game(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,  
     player_id INTEGER NOT NULL,
     persona_id INTEGER NOT NULL,
@@ -43,7 +43,9 @@ CREATE TABLE history(
 CREATE TABLE persona (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR (20) UNIQUE NOT NULL,
-  image VARCHAR(30) NOT NULL
+  image VARCHAR(30) NOT NULL,
+  created_by INTEGER NOT NULL,
+  FOREIGN KEY (created_by) REFERENCES player(id)
 );
 
 
@@ -53,6 +55,6 @@ INSERT INTO `account` VALUES (1,'WhiteFamily','pbkdf2:sha256:260000$jVVzEctPpRhO
 
 INSERT INTO `player` VALUES (1, 1,'Skylar'), (2, 1,'Pinkman'), (3, 2, 'Bart'), (4, 2, 'Lisa');
 
-INSERT INTO `history` VALUES (1, 1, 1, 15005, 7, '2021-01-01'), (2, 1, 2, 11105, 5, '2021-05-01'), (3, 2, 1, 15805, 7, '2021-01-21'), (4, 2, 2, 19905, 9, '2021-03-01');
+INSERT INTO `game` VALUES (1, 1, 1, 15005, 7, '2021-01-01'), (2, 1, 2, 11105, 5, '2021-05-01'), (3, 2, 1, 15805, 7, '2021-01-21'), (4, 2, 2, 19905, 9, '2021-03-01');
 
-INSERT INTO `persona` VALUES (1, 'Simba', 'lion'), (2, 'Dumbo', 'elephant'), (3, 'Tom', 'cat');
+INSERT INTO `persona` VALUES (1, 'Simba', 'lion', 1), (2, 'Dumbo', 'elephant', 2), (3, 'Tom', 'cat', 3);
