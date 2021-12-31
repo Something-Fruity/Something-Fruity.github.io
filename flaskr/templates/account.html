@@ -5,8 +5,14 @@
 {% endblock %}
 
 {% block content %}
-    Welcome, {{ account.username }}. <br>
+    <div>Welcome, {{ account.username }}. <br>
     your first name is: {{ account.f_name }} <br>
     your surname is: {{ account.surname }} <br>
-    your email is: {{ account.email }} <br>
+    your email is: {{ account.email }} <br></div>
+
+    <div>
+        {% for key, value in stats.items() %}
+        {{ key }}: {{ value }} games <br>
+        {% endfor %}
+    </div>
 {% endblock %}
