@@ -23,9 +23,9 @@ CREATE TABLE user (
 
 CREATE TABLE player(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    account_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
     name VARCHAR(30) NOT NULL,
-    FOREIGN KEY (account_id) REFERENCES user(id)
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 

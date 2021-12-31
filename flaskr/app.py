@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash
+# noinspection PyProtectedMember
 from flask_login import login_required, logout_user, current_user, login_user, LoginManager
 
 from tempfile import mkdtemp
@@ -6,6 +7,8 @@ from tempfile import mkdtemp
 from flaskr.errors.errors import InvalidEmailError, InvalidPasswordError
 from flaskr.models.base import Session
 from flaskr.models.user import User
+from flaskr.models.player import Player
+from flaskr.models.game import Game
 
 from flaskr.labels import messages
 from datetime import date
@@ -104,7 +107,16 @@ def register():
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def home():
-    return render_template('account.html', account=current_user)
+    # Query database for players associated with the current user's account
+    players = session.query(Player).filter_by(user_id=current_user.id).all()
+
+    # How many games has each player played?
+    stats = {}
+    for player in players:
+        num_games = len(session.query(Game).filter_by(player_id=player.id).all())
+        stats[player.name] = num_games
+
+    return render_template('account.html', account=current_user, stats=stats)
 
 
 @app.route("/game", methods=["GET", "POST"])
