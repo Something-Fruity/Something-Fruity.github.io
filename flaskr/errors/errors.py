@@ -4,9 +4,5 @@ class Error(Exception):
     pass
 
 
-class IncompleteBookError(Error):
-    pass
-
-
-class NotValidISBNError(Error):
+class InvalidEmailError(Error):
     pass
