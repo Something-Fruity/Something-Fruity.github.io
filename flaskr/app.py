@@ -33,9 +33,14 @@ login_manager.init_app(app)
 session = Session()
 
 
+@app.route("/", methods=["GET", "POST"])
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
+
+    if current_user.is_authenticated:
+        return redirect('/account')
+
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -65,7 +70,7 @@ def register():
         return render_template("auth/register.html")
     else:
         new_username = request.form.get("username")
-        new_password = generate_password_hash(request.form.get("password"))
+        new_password = request.form.get("password")
         new_f_name = request.form.get("f_name")
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
@@ -84,7 +89,8 @@ def register():
             flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
             return render_template('auth/register.html')
 
-        user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
+        user = User(new_username, new_f_name, new_surname, new_email, date.today())
+        user.set_password(new_password)
         session.add(user)
         login_user(user)
         session.commit()
@@ -92,16 +98,16 @@ def register():
         return render_template("account.html", account=user)
 
 
-@app.route("/", methods=["GET", "POST"])
-@login_required
-def index():
-    return redirect('/account')
-
-
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def home():
     return render_template('account.html', account=current_user)
+
+
+@app.route("/game", methods=["GET", "POST"])
+@login_required
+def game():
+    return render_template('game.html', account=current_user)
 
 
 @app.route('/logout')

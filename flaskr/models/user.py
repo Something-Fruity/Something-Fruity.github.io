@@ -17,9 +17,8 @@ class User(UserMixin, Base):
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
 
-    def __init__(self, username, hash, f_name, surname, email, last_login):
+    def __init__(self, username, f_name, surname, email, last_login):
         self.username = username
-        self.hash = hash
         self.f_name = f_name
         self.surname = surname
         self.email = is_valid_email(email)
