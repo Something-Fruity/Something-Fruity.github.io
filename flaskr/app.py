@@ -3,7 +3,7 @@ from flask_login import login_required, logout_user, current_user, login_user, L
 
 from tempfile import mkdtemp
 
-from flaskr.errors.errors import InvalidEmailError
+from flaskr.errors.errors import InvalidEmailError, InvalidPasswordError
 from flaskr.models.base import Session
 from flaskr.models.user import User
 
@@ -90,9 +90,9 @@ def register():
 
         try:
             user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
-        except InvalidEmailError as e:
+        except (InvalidEmailError, InvalidPasswordError) as e:
             flash(str(e), 'alert-danger')
-            return redirect ('/register')
+            return redirect('/register')
 
         session.add(user)
         login_user(user)

@@ -1,11 +1,11 @@
 import unittest
 
-from flaskr.errors.errors import InvalidEmailError
-from flaskr.helpers.helpers import is_valid_email
+from flaskr.errors.errors import InvalidEmailError, InvalidPasswordError
+from flaskr.helpers.helpers import is_valid_email, is_valid_password
 from flaskr.labels import messages
 
 
-class TestHelpers(unittest.TestCase):
+class TestEmailHelper(unittest.TestCase):
     def test_is_valid_email_with_valid_email_returns_email(self):
         # given
         email = 'walter@white.com'
@@ -110,6 +110,58 @@ class TestHelpers(unittest.TestCase):
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(e))
         else:
             self.fail('InvalidEmailError not raised')
+
+
+class TestPasswordHelper(unittest.TestCase):
+    def test_is_valid_password_with_valid_password_returns_password(self):
+        # given
+        password = 'password'
+        # when
+        result = is_valid_password(password)
+        # then
+        self.assertEqual(password, result)
+
+    def test_is_valid_password_with_valid_password_containing_numbers_returns_password(self):
+        # given
+        password = '1234556'
+        # when
+        result = is_valid_password(password)
+        # then
+        self.assertEqual(password, result)
+
+    def test_is_valid_password_with_valid_password_containing_mix_of_letters_and_numbers_returns_password(self):
+        # given
+        password = 'A1a2B3q4x55p6'
+        # when
+        result = is_valid_password(password)
+        # then
+        self.assertEqual(password, result)
+
+    def test_is_valid_password_with_short_password_raises_InvalidPasswordError(self):
+        # given
+        password = '12345'
+        # when
+        try:
+            is_valid_password(password)
+        # then
+        except InvalidPasswordError as e:
+            self.assertEqual(type(e), InvalidPasswordError)
+            self.assertEqual(messages.INVALID_PASSWORD, str(e))
+        else:
+            self.fail('InvalidPasswordError not raised')
+
+    def test_is_valid_password_with_empty_string_raises_InvalidPasswordError(self):
+        # given
+        password = ''
+        # when
+        try:
+            is_valid_password(password)
+        # then
+        except InvalidPasswordError as e:
+            self.assertEqual(type(e), InvalidPasswordError)
+            self.assertEqual(messages.INVALID_PASSWORD, str(e))
+        else:
+            self.fail('InvalidPasswordError not raised')
 
 
 if __name__ == '__main__':
