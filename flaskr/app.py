@@ -89,8 +89,7 @@ def register():
             flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
             return render_template('auth/register.html')
 
-        user = User(new_username, new_f_name, new_surname, new_email, date.today())
-        user.set_password(new_password)
+        user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
         session.add(user)
         login_user(user)
         session.commit()
@@ -111,7 +110,6 @@ def game():
 
 
 @app.route('/logout')
-@login_required
 def logout():
     """Log user out"""
     logout_user()
