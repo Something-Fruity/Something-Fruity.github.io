@@ -16,12 +16,13 @@ def create_test_user():
 
 class TestModels(unittest.TestCase):
     def test_create_new_user_returns_User(self):
-        """
-        GIVEN a User model
-        WHEN a new User is created
-        THEN check all fields are defined correctly and the password is not stored as a raw string
-        """
+        # given
+        test_user = None
+
+        # when
         test_user = create_test_user()
+
+        # then
         assert test_user.username == 'heisenberg'
         assert test_user.hash != 'my-password'
         assert test_user.f_name == 'walter'
@@ -31,15 +32,15 @@ class TestModels(unittest.TestCase):
         assert type(test_user) == User
 
     def test_create_new_user_with_invalid_email_raises_ValueError(self):
-        """
-        GIVEN a User model
-        WHEN a new User is created with an invalid email address
-        THEN an InvalidEmailError is raised and the user is not created
-        """
+        # given
+        test_user = None
+
+        # when
         try:
-            test_user = None
             test_user = User(username='heisenberg', password='my-password', f_name='walter', surname='white',
                              email='invalid_email', last_login=date.today())
+
+        # then
         except InvalidEmailError as e:
             self.assertEqual(type(e), InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(e))
@@ -48,14 +49,13 @@ class TestModels(unittest.TestCase):
             self.fail('InvalidEmailError not raised')
 
     def test_create_new_player_returns_Player(self):
-        """
-        GIVEN a Player model
-        WHEN a new Player is created
-        THEN check all fields are defined correctly
-        """
+        # given
         test_user = create_test_user()
+
+        # when
         test_player = Player(test_user, 'player1')
 
+        # then
         assert test_player.user_id == test_user.id
         assert test_player.user == test_user
         assert type(test_player.user) == User
@@ -63,31 +63,29 @@ class TestModels(unittest.TestCase):
         assert type(test_player) == Player
 
     def test_create_new_persona_returns_Persona(self):
-        """
-        GIVEN a Persona model
-        WHEN a new Persona is created
-        THEN check all fields are defined correctly
-        """
+        # given
         test_player = Player(create_test_user(), 'player1')
-        persona = Persona(name='Princess', image='princess.jpg', player=test_player)
 
-        assert persona.name == 'Princess'
-        assert persona.image == 'princess.jpg'
-        assert persona.player == test_player
-        assert type(persona.player) == Player
-        assert persona.created_by == test_player.id
-        assert type(persona) == Persona
+        # when
+        test_persona = Persona(name='Princess', image='princess.jpg', player=test_player)
+
+        # then
+        assert test_persona.name == 'Princess'
+        assert test_persona.image == 'princess.jpg'
+        assert test_persona.player == test_player
+        assert type(test_persona.player) == Player
+        assert test_persona.created_by == test_player.id
+        assert type(test_persona) == Persona
 
     def test_create_new_game_returns_Game(self):
-        """
-        GIVEN a Game model
-        WHEN a new Game is created
-        THEN check all fields are defined correctly
-        """
+        # given
         test_player = Player(create_test_user(), 'player1')
         test_persona = Persona(name='Princess', image='princess.jpg', player=test_player)
+
+        # when
         test_game = Game(player=test_player, persona=test_persona, score=1000, level=10, datetime=date.today())
 
+        # then
         assert test_game.player == test_player
         assert type(test_game.player) == Player
         assert test_game.persona == test_persona
@@ -96,6 +94,18 @@ class TestModels(unittest.TestCase):
         assert test_game.level == 10
         assert test_game.datetime == date.today()
         assert type(test_game) == Game
+
+
+class TestUserMethods(unittest.TestCase):
+    def test_check_password_with_same_password_returns_True(self):
+        # given
+        test_user = create_test_user()
+
+        # when
+        result = test_user.check_password('my-password')
+
+        # then
+        assert result is True
 
 
 if __name__ == '__main__':
