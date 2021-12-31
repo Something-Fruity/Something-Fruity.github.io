@@ -3,8 +3,7 @@ from flask_login import login_required, logout_user, current_user, login_user, L
 
 from tempfile import mkdtemp
 
-from werkzeug.security import generate_password_hash
-
+from flaskr.errors.errors import InvalidEmailError
 from flaskr.models.base import Session
 from flaskr.models.user import User
 
@@ -89,7 +88,12 @@ def register():
             flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
             return render_template('auth/register.html')
 
-        user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
+        try:
+            user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
+        except InvalidEmailError as e:
+            flash(str(e), 'alert-danger')
+            return redirect ('/register')
+
         session.add(user)
         login_user(user)
         session.commit()
