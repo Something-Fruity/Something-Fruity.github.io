@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light border">
             <a class="navbar-brand" href="/"><span class="yellow">Something </span><span class="green">  Fruity</span></a>
             <div class="collapse navbar-collapse" id="navbar">
-                {% if current_user %}
+                {% if current_user.is_authenticated %}
                     <ul class="navbar-nav mr-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
                         <li class="nav-item"><a class="nav-link" href="/game">Game</a></li>
@@ -31,8 +31,8 @@
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     </ul>
                 {% endif %}
             </div>
