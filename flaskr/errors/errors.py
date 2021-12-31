@@ -6,3 +6,7 @@ class Error(Exception):
 
 class InvalidEmailError(Error):
     pass
+
+
+class InvalidPasswordError(Error):
+    pass

@@ -3,7 +3,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.models.base import Base
 from flask_login import UserMixin
 
-from flaskr.helpers.helpers import is_valid_email
+from flaskr.helpers.helpers import is_valid_email,is_valid_password
 
 
 class User(UserMixin, Base):
@@ -19,7 +19,7 @@ class User(UserMixin, Base):
 
     def __init__(self, username, password, f_name, surname, email, last_login):
         self.username = username
-        self.set_password(password)
+        self.set_password(is_valid_password(password))
         self.f_name = f_name
         self.surname = surname
         self.email = is_valid_email(email)
