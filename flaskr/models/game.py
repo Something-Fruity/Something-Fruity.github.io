@@ -1,10 +1,13 @@
+"""Defines a game class mapped to the game table in the database"""
+
 from sqlalchemy import Column, Date, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from flaskr.models.base import Base
 
 
-class Game(Base):
+class Game(Base):  # pylint: disable=too-few-public-methods
+    """Stores the game details: player, persona, score, level and date played"""
     __tablename__ = 'game'
 
     id = Column(Integer, primary_key=True)
@@ -22,5 +25,3 @@ class Game(Base):
         self.score = score
         self.level = level
         self.datetime = datetime
-
-

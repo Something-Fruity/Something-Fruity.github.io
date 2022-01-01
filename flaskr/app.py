@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request, redirect, flash
-# noinspection PyProtectedMember
-from flask_login import login_required, logout_user, current_user, login_user, LoginManager
+"""The main routes of the application"""
 
 from tempfile import mkdtemp
+from datetime import date
+
+from flask import Flask, render_template, request, redirect, flash
+from flask_login import login_required, logout_user, current_user, login_user, LoginManager
+
 
 from flaskr.errors.errors import InvalidEmailError, InvalidPasswordError
 from flaskr.models.base import Session
@@ -11,7 +14,6 @@ from flaskr.models.player import Player
 from flaskr.models.game import Game
 
 from flaskr.labels import messages
-from datetime import date
 
 app = Flask(__name__)
 
@@ -56,28 +58,30 @@ def login():
             session.commit()
             login_user(user)
             return redirect("/account")
-        else:
-            flash(messages.INCORRECT_DETAILS, 'alert-danger')
-            return render_template('auth/login.html')
 
-    else:
+        # if the user doesn't exist or the password is incorrect
+        flash(messages.INCORRECT_DETAILS, 'alert-danger')
         return render_template('auth/login.html')
+
+    # For GET requests
+    return render_template('auth/login.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
-    if request.method == "GET":
-        # Display form for user to create account
-        return render_template("auth/register.html")
-    else:
+    """Register a new user"""
+    if request.method == "POST":
         new_username = request.form.get("username")
         new_password = request.form.get("password")
         new_f_name = request.form.get("f_name")
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
 
-        if new_username == '' or new_password == '' or new_f_name == '' or new_surname == '' or new_email == '':
+        if new_username == '' \
+                or new_password == '' \
+                or new_f_name == '' \
+                or new_surname == '' \
+                or new_email == '':
             flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
             return render_template('auth/register.html')
 
@@ -92,9 +96,11 @@ def register():
             return render_template('auth/register.html')
 
         try:
-            user = User(new_username, new_password, new_f_name, new_surname, new_email, date.today())
-        except (InvalidEmailError, InvalidPasswordError) as e:
-            flash(str(e), 'alert-danger')
+            user = User(new_username, new_password,
+                        new_f_name, new_surname,
+                        new_email, date.today())
+        except (InvalidEmailError, InvalidPasswordError) as error:
+            flash(str(error), 'alert-danger')
             return redirect('/register')
 
         session.add(user)
@@ -103,10 +109,14 @@ def register():
 
         return render_template("account.html", account=user)
 
+    # For GET requests
+    return render_template("auth/register.html")
+
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def home():
+    """Display current user's account details, including players associated with that account"""
     # Query database for players associated with the current user's account
     players = session.query(Player).filter_by(user_id=current_user.id).all()
 
@@ -122,6 +132,7 @@ def home():
 @app.route("/game", methods=["GET", "POST"])
 @login_required
 def game():
+    """Play a game"""
     return render_template('game.html', account=current_user)
 
 
