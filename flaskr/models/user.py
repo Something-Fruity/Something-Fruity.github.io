@@ -23,6 +23,7 @@ class User(UserMixin, Base):  # pylint: disable=too-few-public-methods
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
 
+    # pylint: disable=too-many-arguments
     def __init__(self, username, password, f_name, surname, email, last_login):
         self.username = username
         self.set_password(is_valid_password(password))
