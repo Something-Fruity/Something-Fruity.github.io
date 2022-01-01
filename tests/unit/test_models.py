@@ -1,3 +1,4 @@
+"""Unit tests for the classes used to store the db models"""
 import unittest
 from datetime import date
 
@@ -11,11 +12,14 @@ from flaskr.labels import messages
 
 
 def create_test_user():
+    """Create and return a user"""
     return User('heisenberg', 'my-password', 'walter', 'white', 'walter@white.com', date.today())
 
 
+# pylint: disable=missing-function-docstring
 class TestModels(unittest.TestCase):
-    def test_create_new_user_returns_User(self):
+    """Unit tests for the classes used to store the db models"""
+    def test_create_new_user_returns_user(self):
         # given
         test_user = None
 
@@ -23,15 +27,15 @@ class TestModels(unittest.TestCase):
         test_user = create_test_user()
 
         # then
-        assert test_user.username == 'heisenberg'
-        assert test_user.hash != 'my-password'
-        assert test_user.f_name == 'walter'
-        assert test_user.surname == 'white'
-        assert test_user.email == 'walter@white.com'
-        assert test_user.last_login == date.today()
-        assert type(test_user) == User
+        self.assertEqual(test_user.username, 'heisenberg')
+        self.assertNotEqual(test_user.hash, 'my-password')
+        self.assertEqual(test_user.f_name, 'walter')
+        self.assertEqual(test_user.surname, 'white')
+        self.assertEqual(test_user.email, 'walter@white.com')
+        self.assertEqual(test_user.last_login, date.today())
+        assert isinstance(test_user, User)
 
-    def test_create_new_user_with_invalid_email_raises_ValueError(self):
+    def test_create_new_user_with_invalid_email_raises_value_error(self):
         # given
         test_user = None
 
@@ -41,14 +45,14 @@ class TestModels(unittest.TestCase):
                              email='invalid_email', last_login=date.today())
 
         # then
-        except InvalidEmailError as e:
-            self.assertEqual(type(e), InvalidEmailError)
-            self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(e))
+        except InvalidEmailError as error:
+            assert isinstance(error, InvalidEmailError)
+            self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
             assert test_user is None
         else:
             self.fail('InvalidEmailError not raised')
 
-    def test_create_new_player_returns_Player(self):
+    def test_create_new_player_returns_player(self):
         # given
         test_user = create_test_user()
 
@@ -56,13 +60,13 @@ class TestModels(unittest.TestCase):
         test_player = Player(test_user, 'player1')
 
         # then
-        assert test_player.user_id == test_user.id
-        assert test_player.user == test_user
-        assert type(test_player.user) == User
-        assert test_player.name == 'player1'
-        assert type(test_player) == Player
+        self.assertEqual(test_player.user_id, test_user.id)
+        self.assertEqual(test_player.user, test_user)
+        assert isinstance(test_player.user, User)
+        self.assertEqual(test_player.name, 'player1')
+        assert isinstance(test_player, Player)
 
-    def test_create_new_persona_returns_Persona(self):
+    def test_create_new_persona_returns_persona(self):
         # given
         test_player = Player(create_test_user(), 'player1')
 
@@ -70,14 +74,14 @@ class TestModels(unittest.TestCase):
         test_persona = Persona(name='Princess', image='princess.jpg', player=test_player)
 
         # then
-        assert test_persona.name == 'Princess'
-        assert test_persona.image == 'princess.jpg'
-        assert test_persona.player == test_player
-        assert type(test_persona.player) == Player
-        assert test_persona.created_by == test_player.id
-        assert type(test_persona) == Persona
+        self.assertEqual(test_persona.name, 'Princess')
+        self.assertEqual(test_persona.image, 'princess.jpg')
+        self.assertEqual(test_persona.player, test_player)
+        assert isinstance(test_persona.player, Player)
+        self.assertEqual(test_persona.created_by, test_player.id)
+        assert isinstance(test_persona, Persona)
 
-    def test_create_new_game_returns_Game(self):
+    def test_create_new_game_returns_game(self):
         # given
         test_player = Player(create_test_user(), 'player1')
         test_persona = Persona(name='Princess', image='princess.jpg', player=test_player)
@@ -86,18 +90,19 @@ class TestModels(unittest.TestCase):
         test_game = Game(player=test_player, persona=test_persona, score=1000, level=10, datetime=date.today())
 
         # then
-        assert test_game.player == test_player
-        assert type(test_game.player) == Player
-        assert test_game.persona == test_persona
-        assert type(test_game.persona) == Persona
-        assert test_game.score == 1000
-        assert test_game.level == 10
-        assert test_game.datetime == date.today()
-        assert type(test_game) == Game
+        self.assertEqual(test_game.player, test_player)
+        assert isinstance(test_game.player, Player)
+        self.assertEqual(test_game.persona, test_persona)
+        assert isinstance(test_game.persona, Persona)
+        self.assertEqual(test_game.score, 1000)
+        self.assertEqual(test_game.level, 10)
+        self.assertEqual(test_game.datetime, date.today())
+        assert isinstance(test_game, Game)
 
 
 class TestUserMethods(unittest.TestCase):
-    def test_check_password_with_same_password_returns_True(self):
+    """Unit tests for methods of the User class"""
+    def test_check_password_with_same_password_returns_true(self):
         # given
         test_user = create_test_user()
 
@@ -105,7 +110,7 @@ class TestUserMethods(unittest.TestCase):
         result = test_user.check_password('my-password')
 
         # then
-        assert result is True
+        self.assertTrue(result)
 
 
 if __name__ == '__main__':

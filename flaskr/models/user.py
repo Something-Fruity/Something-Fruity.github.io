@@ -1,12 +1,18 @@
+"""Defines a user class mapped to the user table in the database"""
+
 from sqlalchemy import Column, String, Integer, DateTime
 from werkzeug.security import check_password_hash, generate_password_hash
-from flaskr.models.base import Base
+
 from flask_login import UserMixin
 
-from flaskr.helpers.helpers import is_valid_email,is_valid_password
+from flaskr.models.base import Base
+from flaskr.helpers.helpers import is_valid_email, is_valid_password
 
 
-class User(UserMixin, Base):
+class User(UserMixin, Base):  # pylint: disable=too-few-public-methods
+    """Holds the account details for an individual: username and password,
+        and date of last login."""
+
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -17,6 +23,7 @@ class User(UserMixin, Base):
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
 
+    # pylint: disable=too-many-arguments
     def __init__(self, username, password, f_name, surname, email, last_login):
         self.username = username
         self.set_password(is_valid_password(password))
