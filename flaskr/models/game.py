@@ -4,6 +4,10 @@ from sqlalchemy import Column, Date, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from flaskr.models.base import Base
+# pylint: disable=unused-import
+# Disable import linting as these classes are imported to back-fill the relationships
+from flaskr.models.player import Player
+from flaskr.models.persona import Persona
 
 
 class Game(Base):  # pylint: disable=too-few-public-methods

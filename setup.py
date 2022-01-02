@@ -1,3 +1,4 @@
+"""Set-up tools for the application"""
 import setuptools
 
 setuptools.setup(

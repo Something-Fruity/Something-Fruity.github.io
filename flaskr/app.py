@@ -1,6 +1,5 @@
 """The main routes of the application"""
 
-from tempfile import mkdtemp
 from datetime import date
 
 from flask import Flask, render_template, request, redirect, flash
@@ -15,22 +14,9 @@ from flaskr.models.game import Game
 
 from flaskr.labels import messages
 
+
 app = Flask(__name__)
-
-# Ensure templates are auto-reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-# Configure session to use filesystem instead of cookies
-app.config["SESSION_FILE_DIR"] = mkdtemp()
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "root"
-app.config["MYSQL_HOST"] = "127.0.0.1"
-app.config["MYSQL_DB"] = "sth_fruity"
-
-app.secret_key = 'super secret key'
+app.config.from_object('config.DevConfig')
 
 login_manager = LoginManager()
 login_manager.init_app(app)
