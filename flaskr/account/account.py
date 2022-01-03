@@ -27,6 +27,3 @@ def home():
         stats[player.name] = num_games
 
     return render_template('account.html', account=current_user, stats=stats)
-
-
-
