@@ -1,12 +1,13 @@
+"""Defining errors and exceptions"""
+
 
 class Error(Exception):
     """Base class for other exceptions"""
-    pass
 
 
 class InvalidEmailError(Error):
-    pass
+    """For invalid emails"""
 
 
 class InvalidPasswordError(Error):
-    pass
+    """For invalid passwords"""
