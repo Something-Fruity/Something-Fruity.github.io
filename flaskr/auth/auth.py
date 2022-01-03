@@ -17,6 +17,13 @@ session = Session()
 
 
 @auth_bp.route("/", methods=["GET", "POST"])
+def landing():
+    """Redirection from landing page"""
+    if current_user.is_authenticated:
+        return redirect('/account')
+    return redirect('/login')
+
+
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
@@ -36,7 +43,7 @@ def login():
             session.query(User).filter_by(username=username).update({'last_login': date.today()})
             session.commit()
             login_user(user)
-            return redirect("/account")
+            return redirect('/account')
 
         # if the user doesn't exist or the password is incorrect
         flash(messages.INCORRECT_DETAILS, 'alert-danger')
@@ -70,7 +77,7 @@ def register():
             return render_template('register.html')
 
         # check password and confirmation are same
-        if request.form.get("password") != request.form.get("confirm-password"):
+        if request.form.get("password") != request.form.get("confirm_password"):
             flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
             return render_template('register.html')
 
