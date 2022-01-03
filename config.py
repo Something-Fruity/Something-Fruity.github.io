@@ -11,8 +11,6 @@ class Config:   # pylint: disable=too-few-public-methods
     """Base config."""
     FLASK_APP = os.environ.get('FLASK_APP')
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    STATIC_FOLDER = 'static'
-    TEMPLATES_FOLDER = 'templates'
     TEMPLATES_AUTO_RELOAD = True
 
     SESSION_FILE_DIR = mkdtemp()
@@ -46,4 +44,5 @@ class TestConfig(Config):   # pylint: disable=too-few-public-methods
     FLASK_ENV = 'testing'
     DEBUG = True
     TESTING = True
-    DATABASE_URI = os.environ.get('TEST_DATABASE_URI')
+    WTF_CSRF_ENABLED = False
+    DATABASE_URI = 'sqlite:///:memory:'  # use a temporary in memory database for testing purposes

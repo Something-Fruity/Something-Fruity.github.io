@@ -2,9 +2,8 @@
 
 from datetime import date
 
-from flask import Flask, render_template, request, redirect, flash
-from flask_login import login_required, logout_user, current_user, login_user, LoginManager
-
+from flask import render_template, request, redirect, flash
+from flask_login import login_required, logout_user, current_user, login_user
 
 from flaskr.errors.errors import InvalidEmailError, InvalidPasswordError
 from flaskr.models.base import Session
@@ -13,13 +12,9 @@ from flaskr.models.player import Player
 from flaskr.models.game import Game
 
 from flaskr.labels import messages
+from flaskr import create_app, login_manager
 
-
-app = Flask(__name__)
-app.config.from_object('config.DevConfig')
-
-login_manager = LoginManager()
-login_manager.init_app(app)
+app = create_app()
 session = Session()
 
 
