@@ -58,7 +58,7 @@ class TestEmailHelper(unittest.TestCase):
             is_valid_email(email)
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
         else:
             self.fail('InvalidEmailError not raised')
@@ -71,7 +71,7 @@ class TestEmailHelper(unittest.TestCase):
             is_valid_email(email)
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
         else:
             self.fail('InvalidEmailError not raised')
@@ -84,7 +84,7 @@ class TestEmailHelper(unittest.TestCase):
             is_valid_email(email)
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
         else:
             self.fail('InvalidEmailError not raised')
@@ -97,7 +97,7 @@ class TestEmailHelper(unittest.TestCase):
             is_valid_email(email)
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
         else:
             self.fail('InvalidEmailError not raised')
@@ -110,7 +110,7 @@ class TestEmailHelper(unittest.TestCase):
             is_valid_email(email)
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
         else:
             self.fail('InvalidEmailError not raised')
@@ -150,7 +150,7 @@ class TestPasswordHelper(unittest.TestCase):
             is_valid_password(password)
         # then
         except InvalidPasswordError as error:
-            assert isinstance(error, InvalidPasswordError)
+            self.assertIsInstance(error, InvalidPasswordError)
             self.assertEqual(messages.INVALID_PASSWORD, str(error))
         else:
             self.fail('InvalidPasswordError not raised')
@@ -163,7 +163,7 @@ class TestPasswordHelper(unittest.TestCase):
             is_valid_password(password)
         # then
         except InvalidPasswordError as error:
-            assert isinstance(error, InvalidPasswordError)
+            self.assertIsInstance(error, InvalidPasswordError)
             self.assertEqual(messages.INVALID_PASSWORD, str(error))
         else:
             self.fail('InvalidPasswordError not raised')

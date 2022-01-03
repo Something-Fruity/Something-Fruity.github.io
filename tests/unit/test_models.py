@@ -33,7 +33,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(test_user.surname, 'white')
         self.assertEqual(test_user.email, 'walter@white.com')
         self.assertEqual(test_user.last_login, date.today())
-        assert isinstance(test_user, User)
+        self.assertIsInstance(test_user, User)
 
     def test_create_new_user_with_invalid_email_raises_value_error(self):
         # given
@@ -46,9 +46,9 @@ class TestModels(unittest.TestCase):
 
         # then
         except InvalidEmailError as error:
-            assert isinstance(error, InvalidEmailError)
+            self.assertIsInstance(error, InvalidEmailError)
             self.assertEqual(messages.INVALID_EMAIL_ADDRESS, str(error))
-            assert test_user is None
+            self.assertIsNone(test_user)
         else:
             self.fail('InvalidEmailError not raised')
 
@@ -62,9 +62,9 @@ class TestModels(unittest.TestCase):
         # then
         self.assertEqual(test_player.user_id, test_user.id)
         self.assertEqual(test_player.user, test_user)
-        assert isinstance(test_player.user, User)
+        self.assertIsInstance(test_player.user, User)
         self.assertEqual(test_player.name, 'player1')
-        assert isinstance(test_player, Player)
+        self.assertIsInstance(test_player, Player)
 
     def test_create_new_persona_returns_persona(self):
         # given
@@ -77,9 +77,9 @@ class TestModels(unittest.TestCase):
         self.assertEqual(test_persona.name, 'Princess')
         self.assertEqual(test_persona.image, 'princess.jpg')
         self.assertEqual(test_persona.player, test_player)
-        assert isinstance(test_persona.player, Player)
+        self.assertIsInstance(test_persona.player, Player)
         self.assertEqual(test_persona.created_by, test_player.id)
-        assert isinstance(test_persona, Persona)
+        self.assertIsInstance(test_persona, Persona)
 
     def test_create_new_game_returns_game(self):
         # given
@@ -91,13 +91,13 @@ class TestModels(unittest.TestCase):
 
         # then
         self.assertEqual(test_game.player, test_player)
-        assert isinstance(test_game.player, Player)
+        self.assertIsInstance(test_game.player, Player)
         self.assertEqual(test_game.persona, test_persona)
-        assert isinstance(test_game.persona, Persona)
+        self.assertIsInstance(test_game.persona, Persona)
         self.assertEqual(test_game.score, 1000)
         self.assertEqual(test_game.level, 10)
         self.assertEqual(test_game.datetime, date.today())
-        assert isinstance(test_game, Game)
+        self.assertIsInstance(test_game, Game)
 
 
 class TestUserMethods(unittest.TestCase):

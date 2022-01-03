@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-db = create_engine(os.environ.get('DATABASE_URL'))
+db = create_engine('mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}/${MYSQL_DB}')
 Session = sessionmaker(bind=db)
 
 Base = declarative_base()
