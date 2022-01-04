@@ -30,6 +30,18 @@ class TestLogin(unittest.TestCase):
         self.assertIn('name="username"', html)
         self.assertIn('name="password"', html)
 
+    def test_login_form_menu_only_contains_login_and_register_menu_items(self):
+        response = self.client.get('/login')
+        self.assertEqual(response.status_code, 200)
+
+        html = response.get_data(as_text=True)
+        # make sure the input fields are included
+        self.assertNotIn('href="/account">Account', html)
+        self.assertNotIn('href="/game">Game', html)
+        self.assertNotIn('href="/logout">Logout', html)
+        self.assertIn('href="/register">Register', html)
+        self.assertIn('href="/login">Log In', html)
+
     def test_home_page_redirect_with_no_current_user_redirects_to_login(self):
         response = self.client.get('/', follow_redirects=True)
         self.assertEqual(response.request.path, '/login')
@@ -78,6 +90,18 @@ class TestRegister(unittest.TestCase):
         self.assertIn('name="f_name"', html)
         self.assertIn('name="surname"', html)
         self.assertIn('name="email"', html)
+
+    def test_registration_form_menu_only_contains_login_and_register_menu_items(self):
+        response = self.client.get('/register')
+        self.assertEqual(response.status_code, 200)
+
+        html = response.get_data(as_text=True)
+        # make sure the input fields are included
+        self.assertNotIn('href="/account">Account', html)
+        self.assertNotIn('href="/game">Game', html)
+        self.assertNotIn('href="/logout">Logout', html)
+        self.assertIn('href="/register">Register', html)
+        self.assertIn('href="/login">Log In', html)
 
     def test_register_with_empty_form_flashes_all_fields_required_message(self):
         data = dict(username="", password="", confirm_password="", f_name="", surname="", email="")
