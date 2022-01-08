@@ -11,8 +11,10 @@
     your email is: {{ account.email }} <br></div>
 
     <div>
-        {% for key, value in stats.items() %}
-        {{ key }}: {{ value }} games <br>
-        {% endfor %}
+        {%  if stats %}
+            {% for key, value in stats.items() %}
+                {{ key }}: {{ value }} games <br>
+            {% endfor %}
+        {% endif %}
     </div>
 {% endblock %}

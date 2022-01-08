@@ -93,7 +93,7 @@ def register():
         login_user(user)
         session.commit()
 
-        return render_template("account.html", account=user)
+        return render_template("account.html", account=user, stats=None)
 
     # For GET requests
     return render_template("register.html")
