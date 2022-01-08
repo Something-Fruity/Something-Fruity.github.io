@@ -6,6 +6,9 @@ from flaskr.labels import messages
 
 
 # pylint: disable=missing-function-docstring
+from flaskr.models.user import User
+
+
 class TestLogin(unittest.TestCase):
     """Unit tests for the login functionality"""
 
@@ -23,7 +26,7 @@ class TestLogin(unittest.TestCase):
 
     def test_login_form_contains_correct_fields(self):
         response = self.client.get('/login')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -32,7 +35,7 @@ class TestLogin(unittest.TestCase):
 
     def test_login_form_menu_only_contains_login_and_register_menu_items(self):
         response = self.client.get('/login')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -44,7 +47,18 @@ class TestLogin(unittest.TestCase):
 
     def test_home_page_redirect_with_no_current_user_redirects_to_login(self):
         response = self.client.get('/', follow_redirects=True)
-        self.assertEqual(response.request.path, '/login')
+        self.assertEqual('/login', response.request.path)
+
+    # This should be improved using mocking of the database rather than using actual values in the real database
+    def test_home_page_redirect_with_current_user_redirects_to_account(self):
+        with self.client:
+            #  given
+            data = dict(username='WhiteFamily', password='bluesky')
+            self.client.post('/login', data=data)
+            # when
+            response = self.client.get('/', follow_redirects=True)
+            # then
+            self.assertEqual('/account', response.request.path)
 
     def test_login_with_empty_form_flashes_incorrect_details_message(self):
         data = dict(username="", password="")
@@ -80,7 +94,7 @@ class TestRegister(unittest.TestCase):
 
     def test_registration_form_contains_correct_fields(self):
         response = self.client.get('/register')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -93,7 +107,7 @@ class TestRegister(unittest.TestCase):
 
     def test_registration_form_menu_only_contains_login_and_register_menu_items(self):
         response = self.client.get('/register')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -151,8 +165,8 @@ class TestLogout(unittest.TestCase):
 
     def test_logout_redirects_to_login(self):
         response = self.client.get('/logout', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.path, '/login')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('/login', response.request.path)
 
 
 if __name__ == '__main__':
