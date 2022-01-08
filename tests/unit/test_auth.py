@@ -1,29 +1,41 @@
-"""Unit tests for the classes used to store the db models"""
+"""Unit tests for the routes in the auth module"""
 import unittest
-
+from flask_testing import TestCase
 from flaskr.app import create_app
 from flaskr.labels import messages
 
 
 # pylint: disable=missing-function-docstring
-class TestLogin(unittest.TestCase):
+class TestHome(TestCase):
+    """Unit tests for the home page route"""
+
+    def create_app(self):
+        return create_app(config='config.TestConfig')
+
+    def test_home_page_redirect_with_no_current_user_redirects_to_login(self):
+        response = self.client.get('/', follow_redirects=True)
+        self.assertEqual('/login', response.request.path)
+
+    # This should be improved using mocking of the database rather than using actual values in the real database
+    def test_home_page_redirect_with_current_user_redirects_to_account(self):
+        with self.client:
+            #  given
+            data = dict(username='WhiteFamily', password='bluesky')
+            self.client.post('/login', data=data)
+            # when
+            response = self.client.get('/', follow_redirects=True)
+            # then
+            self.assertEqual('/account', response.request.path)
+
+class TestLogin(TestCase):
     """Unit tests for the login functionality"""
 
-    def setUp(self):
-        self.app = create_app(config='config.TestConfig')
-        self.context = self.app.app_context()
-        self.context.push()
-        self.client = self.app.test_client()
-
-    def tearDown(self):
-        self.context.pop()
-        self.app = None
-        self.context = None
-        self.client = None
+    def create_app(self):
+        return create_app(config='config.TestConfig')
 
     def test_login_form_contains_correct_fields(self):
         response = self.client.get('/login')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -32,7 +44,7 @@ class TestLogin(unittest.TestCase):
 
     def test_login_form_menu_only_contains_login_and_register_menu_items(self):
         response = self.client.get('/login')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -42,9 +54,15 @@ class TestLogin(unittest.TestCase):
         self.assertIn('href="/register">Register', html)
         self.assertIn('href="/login">Log In', html)
 
-    def test_home_page_redirect_with_no_current_user_redirects_to_login(self):
-        response = self.client.get('/', follow_redirects=True)
-        self.assertEqual(response.request.path, '/login')
+    def test_login_page_redirect_with_current_user_redirects_to_account(self):
+        with self.client:
+            #  given
+            data = dict(username='WhiteFamily', password='bluesky')
+            self.client.post('/login', data=data)
+            # when
+            response = self.client.get('/login', follow_redirects=True)
+            # then
+            self.assertEqual('/account', response.request.path)
 
     def test_login_with_empty_form_flashes_incorrect_details_message(self):
         data = dict(username="", password="")
@@ -63,24 +81,15 @@ class TestLogin(unittest.TestCase):
 
 
 # pylint: disable=missing-function-docstring
-class TestRegister(unittest.TestCase):
+class TestRegister(TestCase):
     """Unit tests for the login and registration functionality"""
 
-    def setUp(self):
-        self.app = create_app(config='config.TestConfig')
-        self.context = self.app.app_context()
-        self.context.push()
-        self.client = self.app.test_client()
-
-    def tearDown(self):
-        self.context.pop()
-        self.app = None
-        self.context = None
-        self.client = None
+    def create_app(self):
+        return create_app(config='config.TestConfig')
 
     def test_registration_form_contains_correct_fields(self):
         response = self.client.get('/register')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -93,7 +102,7 @@ class TestRegister(unittest.TestCase):
 
     def test_registration_form_menu_only_contains_login_and_register_menu_items(self):
         response = self.client.get('/register')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
 
         html = response.get_data(as_text=True)
         # make sure the input fields are included
@@ -121,38 +130,29 @@ class TestRegister(unittest.TestCase):
         self.assertIn(bytes(messages.NON_MATCHING_PASSWORD, encoding='utf-8'), response.data)
 
     def test_register_with_invalid_password_flashes_invalid_password_message(self):
-        data = dict(username="User", password="1", confirm_password="1", f_name="a",
+        data = dict(username="invalid_password_user", password="1", confirm_password="1", f_name="a",
                     surname="user", email="user@user.com")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.INVALID_PASSWORD, encoding='utf-8'), response.data)
 
     def test_register_with_invalid_email_flashes_invalid_email_message(self):
-        data = dict(username="User", password="password", confirm_password="password", f_name="a",
+        data = dict(username="invalid_email_user", password="password", confirm_password="password", f_name="a",
                     surname="user", email="invalid_email")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.INVALID_EMAIL_ADDRESS, encoding='utf-8'), response.data)
 
 
 # pylint: disable=missing-function-docstring
-class TestLogout(unittest.TestCase):
+class TestLogout(TestCase):
     """Unit tests for the login and registration functionality"""
 
-    def setUp(self):
-        self.app = create_app(config='config.TestConfig')
-        self.context = self.app.app_context()
-        self.context.push()
-        self.client = self.app.test_client()
-
-    def tearDown(self):
-        self.context.pop()
-        self.app = None
-        self.context = None
-        self.client = None
+    def create_app(self):
+        return create_app(config='config.TestConfig')
 
     def test_logout_redirects_to_login(self):
         response = self.client.get('/logout', follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.path, '/login')
+        self.assertEqual(200, response.status_code)
+        self.assertEqual('/login', response.request.path)
 
 
 if __name__ == '__main__':

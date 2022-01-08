@@ -1,26 +1,27 @@
 """Unit tests for the classes used to store the db models"""
-import unittest
+from flask_testing import TestCase
 
 from flaskr.app import create_app
 
 
 # pylint: disable=missing-function-docstring
-class TestAccount(unittest.TestCase):
+class TestAccount(TestCase):
     """Unit tests for the account page and functionality"""
 
-    def setUp(self):
-        self.app = create_app(config='config.TestConfig')
-        self.context = self.app.app_context()
-        self.context.push()
-        self.client = self.app.test_client()
-
-    def tearDown(self):
-        self.context.pop()
-        self.app = None
-        self.context = None
-        self.client = None
+    def create_app(self):
+        return create_app(config='config.TestConfig')
 
     def test_account_route_with_no_user_logged_in_redirects_to_login_page(self):
         response = self.client.get('/account', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.path, '/login')
+
+    def test_account_route_with_user_logged_in_renders_account_template(self):
+        # given
+        data = dict(username='WhiteFamily', password='bluesky')
+        self.client.post('/login', data=data)
+        # when
+        response = self.client.get('/account', follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+        self.assert_template_used('account.html')
+        
