@@ -2,7 +2,7 @@ from behave import *
 
 
 # GIVEN
-@given('the user navigates to the main landing page')
+@given('the user is on the main landing page')
 def step_impl(context):
 	context.browser.get('http://127.0.0.1:5000/')
 
@@ -12,10 +12,35 @@ def step_impl(context):
 	pass
 
 
+@given('a player is logged in')
+def step_impl(context):
+	pass
+
+
 # WHEN
 @when('the user clicks register in the menu')
 def step_impl(context):
 	context.browser.find_element_by_link_text('Register').click()
+
+
+@when('the player navigates to the persona page')
+def step_impl(context):
+	pass
+
+
+@when('she clicks the create persona button')
+def step_impl(context):
+	pass
+
+
+@when('she enters a persona name and image and clicks save')
+def step_impl(context):
+	pass
+
+
+@when('she clicks the delete button next to an existing persona')
+def step_impl(context):
+	pass
 
 
 @when('she enters her details and clicks the \'Register\' button')
@@ -52,5 +77,15 @@ def step_impl(context):
 @then('she will remain on the register page')
 def step_impl(context):
 	assert context.browser.current_url == 'http://127.0.0.1:5000/register'
+
+
+@then('the persona is saved in her account')
+def step_impl(context):
+	pass
+
+
+@then('the persona is deleted from her account')
+def step_impl(context):
+	pass
 
 
