@@ -41,8 +41,8 @@ def login():
         if user and user.check_password(password):
             flash(f'Welcome, {user.username}.', 'alert-success')
             session.query(User).filter_by(username=username).update({'last_login': date.today()})
-            session.commit()
             login_user(user)
+            session.commit()
             return redirect('/account')
 
         # if the user doesn't exist or the password is incorrect
@@ -76,7 +76,7 @@ def register():
             flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
             return render_template('register.html')
 
-        # check password and confirmation are same
+        # check password and confirmation are the same
         if request.form.get("password") != request.form.get("confirm_password"):
             flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
             return render_template('register.html')
@@ -90,10 +90,11 @@ def register():
             return redirect('/register')
 
         session.add(user)
-        login_user(user)
         session.commit()
+        user = session.query(User).filter_by(username=new_username).first()
+        login_user(user)
 
-        return render_template("account.html", account=user, stats=None)
+        return redirect('/account')
 
     # For GET requests
     return render_template("register.html")
