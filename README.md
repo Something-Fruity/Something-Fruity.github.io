@@ -57,3 +57,12 @@ various stages throughout the SDLC.
 6. Start the server:
  - flask run
 
+
+## How to run the unit tests and check the code coverage:
+
+1. Make sure the database is up and running.
+   Linux:  sudo service mariadb restart
+2. Run the unit tests.
+   Linux:  python3 -m coverage run -m unittest tests/unit/*.py
+3. Output the coverage report.
+   Linux:  python3 -m coverage report -m --omit=/usr/* 
