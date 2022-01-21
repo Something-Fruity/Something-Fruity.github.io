@@ -32,6 +32,11 @@ def step_impl(context):
 	pass
 
 
+@given('the sound is muted')
+def step_impl(context):
+	pass
+
+
 # WHEN
 @when('the user clicks register in the menu')
 def step_impl(context):

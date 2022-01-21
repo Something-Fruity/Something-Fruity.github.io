@@ -17,4 +17,4 @@ Feature: Create a User Profile
         And the sound is muted
        When she clicks the mute/unmute icon
        Then the sound should be audible
-        And the must icon should be displayed
+        And the mute icon should be displayed
