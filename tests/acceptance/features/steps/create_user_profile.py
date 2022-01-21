@@ -27,6 +27,11 @@ def step_impl(context):
 	pass
 
 
+@given('the user navigates to the settings page')
+def step_impl(context):
+	pass
+
+
 # WHEN
 @when('the user clicks register in the menu')
 def step_impl(context):
@@ -54,6 +59,21 @@ def step_impl(context):
 
 
 @when("she clicks the mute/unmute icon")
+def step_impl(context):
+	pass
+
+
+@when("she clicks the language setting")
+def step_impl(context):
+	pass
+
+
+@when("she chooses English from the menu")
+def step_impl(context):
+	pass
+
+
+@when("she chooses French from the menu")
 def step_impl(context):
 	pass
 
@@ -120,5 +140,15 @@ def step_impl(context):
 
 
 @then('the unmute icon should be displayed')
+def step_impl(context):
+	pass
+
+
+@then('the main menu of the UI should be displayed in English')
+def step_impl(context):
+	pass
+
+
+@then('the main menu of the UI should be displayed in French')
 def step_impl(context):
 	pass
