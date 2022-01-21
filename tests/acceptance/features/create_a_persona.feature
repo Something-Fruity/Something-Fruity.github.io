@@ -10,12 +10,12 @@ Feature: Create a Persona
        When the player navigates to the persona page
         And she clicks the create persona button
         And she enters a persona name and image and clicks save
-       Then the persona is saved in her account
+       Then the persona should be saved in her account
 
 
   Scenario: Delete Existing Persona
       Given a player is logged in
        When the player navigates to the persona page
         And she clicks the delete button next to an existing persona
-       Then the persona is deleted from her account
+       Then the persona should be deleted from her account
 

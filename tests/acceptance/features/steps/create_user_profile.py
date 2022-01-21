@@ -17,6 +17,21 @@ def step_impl(context):
 	pass
 
 
+@given('the user sound is not muted')
+def step_impl(context):
+	pass
+
+
+@given('the user sound is muted')
+def step_impl(context):
+	pass
+
+
+@given('the user navigates to the settings page')
+def step_impl(context):
+	pass
+
+
 # WHEN
 @when('the user clicks register in the menu')
 def step_impl(context):
@@ -43,6 +58,26 @@ def step_impl(context):
 	pass
 
 
+@when("she clicks the mute/unmute icon")
+def step_impl(context):
+	pass
+
+
+@when("she clicks the language setting")
+def step_impl(context):
+	pass
+
+
+@when("she chooses English from the menu")
+def step_impl(context):
+	pass
+
+
+@when("she chooses French from the menu")
+def step_impl(context):
+	pass
+
+
 @when('she enters her details and clicks the \'Register\' button')
 def step_impl(context):
 	username = context.browser.find_element_by_id('username')
@@ -63,29 +98,57 @@ def step_impl(context):
 
 
 # THEN
-@then('she will be logged in and redirected to the account page')
+@then('she should be logged in and redirected to the account page')
 def step_impl(context):
 	assert context.browser.current_url == 'http://127.0.0.1:5000/account'
 	assert 'Welcome, Test User' in context.browser.page_source
 
 
-@then('a \'username exists\' error will be displayed')
+@then('a \'username exists\' error should be displayed')
 def step_impl(context):
 	assert 'There is already an account associated with this username.' in context.browser.page_source
 
 
-@then('she will remain on the register page')
+@then('she should remain on the register page')
 def step_impl(context):
 	assert context.browser.current_url == 'http://127.0.0.1:5000/register'
 
 
-@then('the persona is saved in her account')
+@then('the persona should be saved in her account')
 def step_impl(context):
 	pass
 
 
-@then('the persona is deleted from her account')
+@then('the persona should be deleted from her account')
 def step_impl(context):
 	pass
 
 
+@then('the sound should be audible')
+def step_impl(context):
+	pass
+
+
+@then('the sound should be muted')
+def step_impl(context):
+	pass
+
+
+@then('the mute icon should be displayed')
+def step_impl(context):
+	pass
+
+
+@then('the unmute icon should be displayed')
+def step_impl(context):
+	pass
+
+
+@then('the main menu of the UI should be displayed in English')
+def step_impl(context):
+	pass
+
+
+@then('the main menu of the UI should be displayed in French')
+def step_impl(context):
+	pass
