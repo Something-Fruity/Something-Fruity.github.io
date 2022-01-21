@@ -22,15 +22,17 @@ class User(UserMixin, Base):  # pylint: disable=too-few-public-methods
     surname = Column(String)
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
+    language = Column(String)
 
     # pylint: disable=too-many-arguments
-    def __init__(self, username, password, f_name, surname, email, last_login):
+    def __init__(self, username, password, f_name, surname, email, last_login, language):
         self.username = username
         self.set_password(is_valid_password(password))
         self.f_name = f_name
         self.surname = surname
         self.email = is_valid_email(email)
         self.last_login = last_login
+        self.language = language
 
     def set_password(self, password):
         """Create hashed password."""

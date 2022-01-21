@@ -22,7 +22,6 @@ class Config:   # pylint: disable=too-few-public-methods
     MYSQL_HOST = os.environ.get('MYSQL_HOST')
     MYSQL_DB = os.environ.get('MYSQL_DB')
 
-
 class ProdConfig(Config):   # pylint: disable=too-few-public-methods
     """Additional settings for production environment"""
     FLASK_ENV = 'production'

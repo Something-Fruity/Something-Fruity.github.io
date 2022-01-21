@@ -62,6 +62,7 @@ def register():
         new_f_name = request.form.get("f_name")
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
+        new_language = request.form.get("language")
 
         if new_username == '' \
                 or new_password == '' \
@@ -84,7 +85,7 @@ def register():
         try:
             user = User(new_username, new_password,
                         new_f_name, new_surname,
-                        new_email, date.today())
+                        new_email, date.today(), new_language)
         except (InvalidEmailError, InvalidPasswordError) as error:
             flash(str(error), 'alert-danger')
             return redirect('/register')
