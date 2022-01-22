@@ -5,16 +5,23 @@
 {% endblock %}
 
 {% block content %}
-    <div>Welcome, {{ account.username }}. <br>
-    your first name is: {{ account.f_name }} <br>
-    your surname is: {{ account.surname }} <br>
-    your email is: {{ account.email }} <br></div>
+    <form method="post" action="/account">
+        <div>Welcome, {{ account.username }}. <br>
+        your first name is: {{ account.f_name }} <br>
+        your surname is: {{ account.surname }} <br>
+        your email is: {{ account.email }} <br></div>
 
-    <div>
-        {%  if stats %}
-            {% for key, value in stats.items() %}
-                {{ key }}: {{ value }} games <br>
-            {% endfor %}
-        {% endif %}
-    </div>
+        <div>
+            {%  if stats %}
+
+                {% for key, value in stats.items() %}
+                    {{ key }}: {{ value }} games <br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div>
+            <button class="btn btn-primary" id="edit" name="submit" value="edit">Edit</button>
+            <button class="btn" name="submit" id="delete" value="delete">Delete</button>
+        </div>
+    </form>
 {% endblock %}
