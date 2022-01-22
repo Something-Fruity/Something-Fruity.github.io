@@ -4,6 +4,7 @@ from sqlalchemy import Column, String, Integer, DateTime
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
 
 from flaskr.models.base import Base
 from flaskr.helpers.helpers import is_valid_email, is_valid_password
@@ -22,6 +23,7 @@ class User(UserMixin, Base):  # pylint: disable=too-few-public-methods
     surname = Column(String)
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
+    players = relationship("Player", back_populates="user", cascade="all, delete, delete-orphan")
 
     # pylint: disable=too-many-arguments
     def __init__(self, username, password, f_name, surname, email, last_login):
