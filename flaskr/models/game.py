@@ -20,8 +20,8 @@ class Game(Base):  # pylint: disable=too-few-public-methods
     score = Column(Integer)
     level = Column(Integer)
     datetime = Column(Date)
-    player = relationship("Player", backref=backref("game", uselist=False))
-    persona = relationship("Persona", backref=backref("persona", uselist=False))
+    player = relationship("Player", back_populates="games")
+    persona = relationship("Persona", back_populates="games")
 
     # pylint: disable=too-many-arguments
     def __init__(self, player, persona, score, level, datetime):
