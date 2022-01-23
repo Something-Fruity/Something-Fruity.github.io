@@ -4,7 +4,7 @@
   - [Assignment Brief](#assignment-brief)
   - [Customer Requirements](#customer-requirements)
   - [How to Deploy the Project Using Docker](#how-to-deploy-the-project-using-docker)
-  - [How to install and run the code without DOCKER](#how-to-install-and-run-the-code-without-docker)
+  - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
 ## Assignment Brief
@@ -45,7 +45,7 @@ various stages throughout the SDLC.
        - Linux/MacOs: sudo docker-compose up
 <!---  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app -->
 
-## How to install and run the code without DOCKER
+## How to Deploy the Project without Docker
 
 1. Clone repository:
    - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
