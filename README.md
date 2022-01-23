@@ -38,6 +38,8 @@ various stages throughout the SDLC.
 
 ### Docker Installation Guides
 
+[Docker Windows Installation Guide](https://docs.docker.com/desktop/windows/install/)
+
 1. Clone repository:
 
    ```Terminal
