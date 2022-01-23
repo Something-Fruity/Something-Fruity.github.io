@@ -9,12 +9,12 @@ Feature: Create a User Profile
       Given the user is on the main landing page
        When the user clicks register in the menu
         And she enters her details and clicks the 'Register' button
-       Then she will be logged in and redirected to the account page
+       Then she should be logged in and redirected to the account page
 
   Scenario: New User uses Existing Username
       Given an account exists for a username
         And the user is on the main landing page
        When the user clicks register in the menu
         And she enters her details and clicks the 'Register' button
-       Then a 'username exists' error will be displayed
-        And she will remain on the register page
+       Then a 'username exists' error should be displayed
+        And she should remain on the register page
