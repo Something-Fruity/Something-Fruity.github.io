@@ -8,6 +8,7 @@
     - [Ubuntu Deployment Instructions](#ubuntu-deployment-instructions)
     - [Windows Deployment Instructions](#windows-deployment-instructions)
   - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
+    - [Ubuntu/Linux](#ubuntulinux)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
 ## Assignment Brief
@@ -116,6 +117,26 @@ various stages throughout the SDLC.
    ```
 
 ## How to Deploy the Project without Docker
+
+### Ubuntu/Linux
+
+1. Install Python
+
+2. Clone repository:
+
+   ```Terminal
+
+   git clone https://github.com/Something-Fruity/Something-Fruity.github.io.git
+   
+   ```
+
+3. Change to the Project Directory
+
+   ```Terminal
+
+   cd Something-Fruity.github.io/
+   
+   ```
 
 1. Clone repository:
    - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
