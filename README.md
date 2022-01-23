@@ -64,6 +64,15 @@ various stages throughout the SDLC.
 
 ### Windows Deployment Instructions
 
+1. [Install Docker Desktop Environment](https://docs.docker.com/desktop/windows/install/)
+2. Clone Repository
+
+   ```Terminal
+
+   git clone https://github.com/Something-Fruity/Something-Fruity.github.io.git
+   
+   ```
+
 ## How to Deploy the Project without Docker
 
 1. Clone repository:
