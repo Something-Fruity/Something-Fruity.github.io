@@ -5,6 +5,7 @@
   - [Customer Requirements](#customer-requirements)
   - [How to Deploy the Project Using Docker](#how-to-deploy-the-project-using-docker)
     - [Docker Installation Guides](#docker-installation-guides)
+    - [Ubuntu Deployment Instructions](#ubuntu-deployment-instructions)
   - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
@@ -40,6 +41,8 @@ various stages throughout the SDLC.
 
 [Docker Windows Installation Guide](https://docs.docker.com/desktop/windows/install/)
 [Docker Ubuntu Installation Guide](https://docs.docker.com/engine/install/ubuntu/)
+
+### Ubuntu Deployment Instructions
 
 1. Clone repository:
 
