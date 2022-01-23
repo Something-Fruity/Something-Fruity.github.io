@@ -30,14 +30,16 @@ def account():
             stats[player.name] = num_games
 
         return render_template('account.html', account=current_user, stats=stats)
-    else:
-        button_clicked = request.form.get('submit')
-        if button_clicked == "delete":
-            # Delete the user and all her related records
-            user = session.query(User).filter_by(id=current_user.id).first()
-            session.delete(user)
-            session.commit()
-            flash(ACCOUNT_DELETED_SUCCESS, 'alert-success')
-            return redirect('/logout')
-        else:
-            return redirect('/game')
+
+    # the request.method is POST
+    button_clicked = request.form.get('submit')
+
+    if button_clicked == "delete":
+        # Delete the user and all her related records
+        user = session.query(User).filter_by(id=current_user.id).first()
+        session.delete(user)
+        session.commit()
+        flash(ACCOUNT_DELETED_SUCCESS, 'alert-success')
+        return redirect('/logout')
+
+    return redirect('/game')

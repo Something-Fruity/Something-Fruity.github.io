@@ -1,7 +1,7 @@
 """Defines a game class mapped to the game table in the database"""
 
 from sqlalchemy import Column, Date, Integer, ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 
 from flaskr.models.base import Base
 # pylint: disable=unused-import

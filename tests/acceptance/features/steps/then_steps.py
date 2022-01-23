@@ -1,8 +1,10 @@
 """The implementation of the 'when' steps for the user acceptance tests"""
 
-from behave import *
+from behave import then  # pylint: disable=no-name-in-module
 
 
+# pylint: disable=missing-function-docstring
+# pylint: disable=function-redefined
 @then('she should be logged in and redirected to the account page')
 def step_impl(context):
     assert context.browser.current_url == 'http://127.0.0.1:5000/account'
@@ -51,9 +53,30 @@ def step_impl(context):
 
 @then('the main menu of the UI should be displayed in English')
 def step_impl(context):
-	pass
+    pass
 
 
 @then('the main menu of the UI should be displayed in French')
 def step_impl(context):
-	pass
+    pass
+
+
+@then('the account should be deleted')
+def step_impl(context):
+    pass
+
+
+@then('she should remain on the login page')
+@then('she should be redirected to the login page')
+def step_impl(context):
+    pass
+
+
+@then('an "incorrect details" error should be displayed')
+def step_impl(context):
+    pass
+
+
+@then('the account should be deleted')
+def step_impl(context):
+    pass
