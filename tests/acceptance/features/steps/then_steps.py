@@ -1,6 +1,6 @@
 """The implementation of the 'when' steps for the user acceptance tests"""
 
-from behave import then  # pylint: disable=no-name-in-module
+from behave import then, given  # pylint: disable=no-name-in-module
 
 
 # pylint: disable=missing-function-docstring
@@ -66,17 +66,17 @@ def step_impl(context):
     pass
 
 
-@then('she should remain on the login page')
 @then('she should be redirected to the login page')
+@given('the user navigates to the login page')
 def step_impl(context):
-    pass
+    context.browser.get('http://127.0.0.1:5000/login')
+
+
+@then('she should remain on the login page')
+def step_impl(context):
+    assert context.browser.current_url == 'http://127.0.0.1:5000/login'
 
 
 @then('an "incorrect details" error should be displayed')
 def step_impl(context):
-    pass
-
-
-@then('the account should be deleted')
-def step_impl(context):
-    pass
+    assert 'INCORRECT DETAILS: Please check your details and try again.' in context.browser.page_source
