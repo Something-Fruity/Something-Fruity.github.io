@@ -2,6 +2,7 @@
   - [Assignment Brief:](#assignment-brief)
   - [Customer Requirements:](#customer-requirements)
   - [How to Deploy the Project:](#how-to-deploy-the-project)
+    - [Environment Requirements](#environment-requirements)
   - [How to install and run the code without DOCKER:](#how-to-install-and-run-the-code-without-docker)
   - [How to run the unit tests and check the code coverage:](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
@@ -33,6 +34,7 @@ various stages throughout the SDLC.
 - [ ] Jenna is a 5 year old girl. She doesn’t want to have to ask mum for help.
 
 ## How to Deploy the Project:
+### Environment Requirements
 
 1. Clone repository:
  - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
