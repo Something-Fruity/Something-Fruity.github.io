@@ -40,11 +40,6 @@ def step_impl(context):
     pass
 
 
-@given('the user navigates to the login page')
-def step_impl(context):
-    pass
-
-
 @given('the user logs in')
 def step_impl(context):
     pass
