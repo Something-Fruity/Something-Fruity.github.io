@@ -1,3 +1,4 @@
+# Something Fruity
 - [Something Fruity](#something-fruity)
   - [Assignment Brief:](#assignment-brief)
   - [Customer Requirements:](#customer-requirements)
@@ -7,7 +8,6 @@
   - [How to run the unit tests and check the code coverage:](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
 
-# Something Fruity
 
 ## Assignment Brief:
 You are tasked with supporting the end-to-end life cycle of developing the software that can be used in a child’s toy. 
