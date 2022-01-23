@@ -3,13 +3,15 @@ version: '2'
 services:
     flask-app:
         container_name: flask-app
-        build: ./flaskr
+        build:
+            context: .
+            dockerfile: flaskr/Dockerfile
         restart: always
         ports:
             - '5000:5000'
         networks:
             - backend
-        links: 
+        links:
             - mysql-db
 
     mysql-db:
