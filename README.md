@@ -73,6 +73,14 @@ various stages throughout the SDLC.
    
    ```
 
+3. Change to the Project Directory
+
+   ```Terminal
+
+   cd .\Something-Fruity.github.io\
+   
+   ```
+
 ## How to Deploy the Project without Docker
 
 1. Clone repository:
