@@ -4,8 +4,8 @@
   - [Assignment Brief](#assignment-brief)
   - [Customer Requirements](#customer-requirements)
   - [How to Deploy the Project Using Docker](#how-to-deploy-the-project-using-docker)
-  - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
     - [Docker Installation Guides](#docker-installation-guides)
+  - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
 ## Assignment Brief
@@ -36,6 +36,8 @@ various stages throughout the SDLC.
 
 ## How to Deploy the Project Using Docker
 
+### Docker Installation Guides
+
 1. Clone repository:
    - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
 2. Inside the project folder:
@@ -47,8 +49,6 @@ various stages throughout the SDLC.
 <!---  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app -->
 
 ## How to Deploy the Project without Docker
-
-### Docker Installation Guides
 
 1. Clone repository:
    - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
