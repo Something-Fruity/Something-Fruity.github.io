@@ -6,6 +6,7 @@
   - [How to Deploy the Project Using Docker](#how-to-deploy-the-project-using-docker)
     - [Docker Installation Guides](#docker-installation-guides)
     - [Ubuntu Deployment Instructions](#ubuntu-deployment-instructions)
+    - [Windows Deployment Instructions](#windows-deployment-instructions)
   - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
@@ -60,6 +61,8 @@ various stages throughout the SDLC.
    - run images:
        - Linux/MacOs: sudo docker-compose up
 <!---  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app -->
+
+### Windows Deployment Instructions
 
 ## How to Deploy the Project without Docker
 
