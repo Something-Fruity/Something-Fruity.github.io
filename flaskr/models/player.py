@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from flaskr.models.base import Base
 
 
-class Player(Base): # pylint: disable=too-few-public-methods
+class Player(Base):  # pylint: disable=too-few-public-methods
     """Stores a player details, one account can have many players registered"""
     __tablename__ = 'player'
 
