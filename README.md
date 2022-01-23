@@ -39,7 +39,13 @@ various stages throughout the SDLC.
 ### Docker Installation Guides
 
 1. Clone repository:
-   - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
+
+   ```Terminal
+
+   git clone https://github.com/Something-Fruity/Something-Fruity.github.io.git
+   
+   ```
+
 2. Inside the project folder:
    - Create image using docker setup files:
    - Linux/MacOs: sudo docker-compose build --no-cache
