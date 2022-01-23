@@ -1,3 +1,11 @@
+- [Something Fruity](#something-fruity)
+  - [Assignment Brief:](#assignment-brief)
+  - [Customer Requirements:](#customer-requirements)
+  - [How to install and run the code using DOCKER:](#how-to-install-and-run-the-code-using-docker)
+  - [How to install and run the code without DOCKER:](#how-to-install-and-run-the-code-without-docker)
+  - [How to run the unit tests and check the code coverage:](#how-to-run-the-unit-tests-and-check-the-code-coverage)
+
+
 # Something Fruity
 
 ## Assignment Brief:
