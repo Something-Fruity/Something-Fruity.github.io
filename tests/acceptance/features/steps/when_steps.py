@@ -1,9 +1,10 @@
 """The implementation of the 'when' steps for the user acceptance tests"""
 
-from behave import *
+from behave import when  # pylint: disable=no-name-in-module
 
 
-# WHEN
+# pylint: disable=missing-function-docstring
+# pylint: disable=function-redefined
 @when('the user clicks register in the menu')
 def step_impl(context):
     context.browser.find_element_by_link_text('Register').click()
@@ -66,3 +67,15 @@ def step_impl(context):
     surname.send_keys('surname')
     email.send_keys('email@email.com')
     register_button.click()
+
+
+@when('the user clicks delete')
+def step_impl(context):
+    pass
+
+
+@when('the user tries to log in with her details')
+def step_impl(context):
+    pass
+
+

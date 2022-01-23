@@ -2,19 +2,17 @@
 Feature: Create a User Profile
 
   As a user
-    I want to be able to create a profile to store the information of the players on my account.
-    It should have a secure password so other people cannot access my account
+    I want to be able to delete my profile and all associated data.
 
-  Scenario: New User with Unique Username
-      Given the user is on the main landing page
-       When the user clicks register in the menu
-        And she enters her details and clicks the 'Register' button
-       Then she should be logged in and redirected to the account page
+  Scenario: Logged-In User Deletes Account
+      Given the user logs in
+       When the user clicks delete
+       Then the account should be deleted
+        And she should be redirected to the login page
 
-  Scenario: New User uses Existing Username
-      Given an account exists for a username
-        And the user is on the main landing page
-       When the user clicks register in the menu
-        And she enters her details and clicks the 'Register' button
-       Then a 'username exists' error should be displayed
-        And she should remain on the register page
+  Scenario: User Tries to Login with Deleted Account
+      Given a user has deleted her account
+        And the user navigates to the login page
+       When the user tries to log in with her details
+       Then an "incorrect details" error should be displayed
+        And she should remain on the login page

@@ -19,6 +19,7 @@ chrome_options.add_argument("--proxy-server='direct://'")
 chrome_options.add_argument("--proxy-bypass-list=*")
 
 
+# pylint: disable=unused-argument
 def before_scenario(context, scenario):
     """Initialize the web driver, server and app"""
     context.server = simple_server.WSGIServer(("", 5000), WSGIRequestHandler)
@@ -35,4 +36,3 @@ def after_scenario(context, scenario):
     context.browser.quit()
     context.server.shutdown()
     context.pa_app.join()
-

@@ -24,4 +24,14 @@ class TestAccount(TestCase):
         response = self.client.get('/account', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         self.assert_template_used('account.html')
-        
+
+    def test_delete_account_deletes_account_displays_message_and_redirects_to_login_page(self):
+        pass
+        # # given
+        #
+        # # when
+        # self.client.form = 'delete'
+        # response = self.client.post('/account', follow_redirects=True)
+        # # then
+        # self.assertEqual(response.status_code, 200)
+        # self.assert_template_used('login.html')
