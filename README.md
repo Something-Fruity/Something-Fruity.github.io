@@ -46,7 +46,9 @@ various stages throughout the SDLC.
 
 ### Ubuntu Deployment Instructions
 
-1. Clone repository:
+1. [Install Docker Environment](https://docs.docker.com/engine/install/ubuntu/)
+2. [Install Docker-Compose](https://docs.docker.com/compose/install/)
+3. Clone repository:
 
    ```Terminal
 
@@ -54,13 +56,29 @@ various stages throughout the SDLC.
    
    ```
 
-2. Inside the project folder:
-   - Create image using docker setup files:
-   - Linux/MacOs: sudo docker-compose build --no-cache
-   - Windows: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   - run images:
-       - Linux/MacOs: sudo docker-compose up
-<!---  - Linux/MacOs: sudo docker run -p 5000:5000 something-fruitygithubio_flask-app -->
+4. Change to the Project Directory
+
+   ```Terminal
+
+   cd Something-Fruity.github.io/
+   
+   ```
+
+5. Build Docker Services
+
+   ```Terminal
+
+   sudo docker-compose build --no-cache
+   
+   ```
+
+6. Start Docker Containers
+
+   ```Terminal
+
+   sudo docker-compose up
+   
+   ```
 
 ### Windows Deployment Instructions
 
