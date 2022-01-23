@@ -81,6 +81,22 @@ various stages throughout the SDLC.
    
    ```
 
+4. Build Docker Services
+
+   ```Terminal
+
+   docker-compose build --no-cache
+   
+   ```
+
+5. Start Docker Containers
+
+   ```Terminal
+
+   docker-compose up
+   
+   ```
+
 ## How to Deploy the Project without Docker
 
 1. Clone repository:
