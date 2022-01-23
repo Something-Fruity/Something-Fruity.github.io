@@ -1,10 +1,10 @@
 """Defines a user class mapped to the user table in the database"""
 
 from sqlalchemy import Column, String, Integer, DateTime
-from werkzeug.security import check_password_hash, generate_password_hash
-
-from flask_login import UserMixin
 from sqlalchemy.orm import relationship
+
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import UserMixin
 
 from flaskr.models.base import Base
 from flaskr.helpers.helpers import is_valid_email, is_valid_password
