@@ -12,6 +12,7 @@ class Config:   # pylint: disable=too-few-public-methods
     FLASK_APP = os.environ.get('FLASK_APP')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     TEMPLATES_AUTO_RELOAD = True
+    BABEL_DEAFULT_LOCALE = 'en'
 
     SESSION_FILE_DIR = mkdtemp()
     SESSION_PERMANENT = False

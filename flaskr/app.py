@@ -12,6 +12,8 @@ from flaskr.game.game import game_bp
 from flaskr.auth.auth import auth_bp
 from flaskr.account.account import account_bp
 
+from flask_babel import Babel, gettext
+
 login_manager = LoginManager()
 
 
@@ -19,6 +21,7 @@ def create_app(config='config.DevConfig'):
     """Create and return the application using the config passed in"""
     application = Flask(__name__)
     application.config.from_object(config)
+    babel = Babel(application)
 
     application.register_blueprint(auth_bp)
     application.register_blueprint(account_bp)
