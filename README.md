@@ -120,9 +120,7 @@ various stages throughout the SDLC.
 
 ### Ubuntu/Linux
 
-1. Install Python
-
-2. Clone repository:
+1. Clone repository:
 
    ```Terminal
 
@@ -130,7 +128,7 @@ various stages throughout the SDLC.
    
    ```
 
-3. Change to the Project Directory
+2. Change to the Project Directory
 
    ```Terminal
 
@@ -138,22 +136,22 @@ various stages throughout the SDLC.
    
    ```
 
-1. Clone repository:
+3. Clone repository:
    - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
-2. Create virtual environment:
+4. Create virtual environment:
    - go inside the folder created by cloning github repository
    - run in command line: python3 -m venv [directory]
    - e.g. python3 -m venv venv
-3. Activate virtual environment:
+5. Activate virtual environment:
     - in command line:
        - Linux/MacOS: source venv/bin/activate
        - Windows: venv\Scripts\activate.bat
-4. Install requirements in virtual environment:
+6. Install requirements in virtual environment:
    - pip install -r flaskr\requirements
-5. Set environment variables:
+7. Set environment variables:
    - export FLASK_APP=flaskr.app
    - export FLASK_ENV=development
-6. Start the server:
+8. Start the server:
    - flask run
 
 ## How to run the unit tests and check the code coverage
