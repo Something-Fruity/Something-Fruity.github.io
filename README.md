@@ -121,7 +121,7 @@ various stages throughout the SDLC.
 
 ## How to Deploy the Project without Docker
 
-1. Clone repository:
+1. Clone repository
 
    ```Terminal
 
@@ -143,7 +143,7 @@ various stages throughout the SDLC.
      python3 -m venv venv
      ```
 
-4. Activate virtual environment:
+4. Activate virtual environment
    - Linux/MacOS
 
    ```Terminal
