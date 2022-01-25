@@ -10,6 +10,7 @@ from flaskr.models.player import Player
 from flaskr.models.game import Game
 
 
+
 account_bp = Blueprint('account_bp', __name__, template_folder='templates')
 
 
@@ -25,5 +26,4 @@ def home():
     for player in players:
         num_games = len(session.query(Game).filter_by(player_id=player.id).all())
         stats[player.name] = num_games
-
     return render_template('account.html', account=current_user, stats=stats)

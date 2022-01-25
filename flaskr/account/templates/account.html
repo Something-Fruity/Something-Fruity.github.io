@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Home
+    {{_('Home')}}
 {% endblock %}
 
 {% block content %}
-    <div>Welcome, {{ account.username }}. <br>
+    <div>{{_('Welcome')}}, {{ account.username }}. <br>
     your first name is: {{ account.f_name }} <br>
     your surname is: {{ account.surname }} <br>
     your email is: {{ account.email }} <br>
-    your language is : {{ account.language }}<br></div>
+    your language is : {{ account.language }}<br><br></div>
 
     <div>
         {%  if stats %}
