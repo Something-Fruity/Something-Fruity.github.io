@@ -8,7 +8,6 @@
     - [Ubuntu Deployment Instructions](#ubuntu-deployment-instructions)
     - [Windows Deployment Instructions](#windows-deployment-instructions)
   - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
-    - [Ubuntu/Linux](#ubuntulinux)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
 
 ## Assignment Brief
@@ -122,8 +121,6 @@ various stages throughout the SDLC.
 
 ## How to Deploy the Project without Docker
 
-### Ubuntu/Linux
-
 1. Clone repository:
 
    ```Terminal
@@ -140,22 +137,53 @@ various stages throughout the SDLC.
    
    ```
 
-3. Clone repository:
-   - git clone git@github.com:Something-Fruity/Something-Fruity.github.io.git
-4. Create virtual environment:
-   - go inside the folder created by cloning github repository
-   - run in command line: python3 -m venv [directory]
-   - e.g. python3 -m venv venv
-5. Activate virtual environment:
-    - in command line:
-       - Linux/MacOS: source venv/bin/activate
-       - Windows: venv\Scripts\activate.bat
-6. Install requirements in virtual environment:
-   - pip install -r flaskr\requirements
-7. Set environment variables:
-   - export FLASK_APP=flaskr.app
-   - export FLASK_ENV=development
-8. Start the server:
+3. Create Python Virtual Environment virtual environment:
+
+   - ```Terminal
+     python3 -m venv venv
+     ```
+
+4. Activate virtual environment:
+   - Linux/MacOS
+
+   ```Terminal
+   source venv/bin/activate
+   ```
+
+   - Windows
+
+   ```Terminal
+   venv\Scripts\activate.bat
+   ```
+
+5. Install Python Requirements
+
+   ```Terminal
+   pip install -r flaskr\requirements
+   ```
+
+6. Export Environment Variables
+   - Windows
+
+   ```Terminal
+   set FLASK_APP = flaskr.app
+   ```
+
+    ```Terminal
+   set FLASK_ENV=development
+   ```
+
+   - Linux/MacOS
+
+   ```Terminal
+   export FLASK_APP=flaskr.app
+   ```
+
+   ```Terminal
+   export FLASK_ENV=development
+   ```
+
+7. Start the server:
    - flask run
 
 ## How to run the unit tests and check the code coverage
