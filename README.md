@@ -81,6 +81,8 @@ various stages throughout the SDLC.
    
    ```
 
+7. Access the Application [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
 ### Windows Deployment Instructions
 
 1. [Install Docker Desktop Environment](https://docs.docker.com/desktop/windows/install/)
@@ -115,6 +117,8 @@ various stages throughout the SDLC.
    docker-compose up
    
    ```
+
+6. Access the Application [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ## How to Deploy the Project without Docker
 
