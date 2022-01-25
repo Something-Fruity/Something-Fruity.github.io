@@ -84,6 +84,14 @@ def step_impl(context):
     password.send_keys('123456')
 
 
+@when('the user enters an incorrect password details')
+def step_impl(context):
+    username = context.browser.find_element_by_id('username')
+    password = context.browser.find_element_by_id('password')
+    username.send_keys('Test User')
+    password.send_keys('wrong password')
+
+
 @given('she clicks login')
 @when('she clicks login')
 def step_impl(context):
