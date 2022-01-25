@@ -5,7 +5,7 @@
   - [Customer Requirements](#customer-requirements)
   - [How to Deploy the Project Using Docker](#how-to-deploy-the-project-using-docker)
     - [Docker Installation Guides](#docker-installation-guides)
-    - [Ubuntu Deployment Instructions](#ubuntu-deployment-instructions)
+    - [Linux/MacOS Deployment Instructions](#linuxmacos-deployment-instructions)
     - [Windows Deployment Instructions](#windows-deployment-instructions)
   - [How to Deploy the Project without Docker](#how-to-deploy-the-project-without-docker)
   - [How to run the unit tests and check the code coverage](#how-to-run-the-unit-tests-and-check-the-code-coverage)
@@ -44,7 +44,7 @@ various stages throughout the SDLC.
 
 [Docker Ubuntu Installation Guide](https://docs.docker.com/engine/install/ubuntu/)
 
-### Ubuntu Deployment Instructions
+### Linux/MacOS Deployment Instructions
 
 1. [Install Docker Environment](https://docs.docker.com/engine/install/ubuntu/)
 2. [Install Docker-Compose](https://docs.docker.com/compose/install/)
@@ -183,7 +183,7 @@ various stages throughout the SDLC.
    export FLASK_ENV=development
    ```
 
-7. Start the server:
+7. Start the Application
    - flask run
 
 ## How to run the unit tests and check the code coverage
