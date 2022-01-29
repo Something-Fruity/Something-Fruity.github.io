@@ -71,6 +71,10 @@ def register():
             flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
             return render_template('register.html')
 
+        if not request.form.get("privacy"):
+            flash(messages.TERMS_AND_CONDITIONS_NOT_TICKED, 'alert-danger')
+            return redirect('/register')
+
         # check username is not already in use
         if session.query(User).filter_by(username=new_username).first():
             flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
