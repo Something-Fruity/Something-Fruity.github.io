@@ -58,6 +58,7 @@ def step_impl(context):
     f_name = context.browser.find_element_by_id('f_name')
     surname = context.browser.find_element_by_id('surname')
     email = context.browser.find_element_by_id('email')
+    ts_and_cs = context.browser.find_element_by_id('privacy')
     register_button = context.browser.find_element_by_id('submit')
 
     username.send_keys('Test User')
@@ -66,6 +67,7 @@ def step_impl(context):
     f_name.send_keys('name')
     surname.send_keys('surname')
     email.send_keys('email@email.com')
+    ts_and_cs.click()
     register_button.click()
 
 
