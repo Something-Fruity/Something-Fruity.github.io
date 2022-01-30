@@ -15,31 +15,28 @@ from flaskr.models.user import User
 account_bp = Blueprint('account_bp', __name__, template_folder='templates')
 
 
-@account_bp.route("/account", methods=["GET", "POST"])
+@account_bp.route("/account", methods=["GET"])
 @login_required
 def account():
     """Display current user's account details, including players associated with that account"""
-    if request.method == "GET":
-        # Query database for players associated with the current user's account
-        players = session.query(Player).filter_by(user_id=current_user.id).all()
 
-        # How many games has each player played?
-        stats = {}
-        for player in players:
-            num_games = len(session.query(Game).filter_by(player_id=player.id).all())
-            stats[player.name] = num_games
+    # Query database for players associated with the current user's account
+    players = session.query(Player).filter_by(user_id=current_user.id).all()
 
-        return render_template('account.html', account=current_user, stats=stats)
+    # How many games has each player played?
+    stats = {}
+    for player in players:
+        num_games = len(session.query(Game).filter_by(player_id=player.id).all())
+        stats[player.name] = num_games
 
-    # the request.method is POST
-    button_clicked = request.form.get('submit')
+    return render_template('account.html', account=current_user, stats=stats)
 
-    if button_clicked == "delete":
-        # Delete the user and all her related records
-        user = session.query(User).filter_by(id=current_user.id).first()
-        session.delete(user)
-        session.commit()
-        flash(ACCOUNT_DELETED_SUCCESS, 'alert-success')
-        return redirect('/logout')
 
-    return redirect('/game')
+@account_bp.route("/delete_account", methods=["POST"])
+@login_required
+def delete_account():
+    user = session.query(User).filter_by(id=current_user.id).first()
+    session.delete(user)
+    session.commit()
+    flash(ACCOUNT_DELETED_SUCCESS, 'alert-success')
+    return redirect('/logout')
