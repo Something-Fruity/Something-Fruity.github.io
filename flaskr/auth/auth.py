@@ -63,44 +63,44 @@ def register():
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
 
-        if new_username == '' \
-                or new_password == '' \
-                or new_f_name == '' \
-                or new_surname == '' \
-                or new_email == '':
-            flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
-            return render_template('register.html')
+        while True:
+            if new_username == '' \
+                    or new_password == '' \
+                    or new_f_name == '' \
+                    or new_surname == '' \
+                    or new_email == '':
+                flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
+                break
 
-        if not request.form.get("privacy"):
-            flash(messages.TERMS_AND_CONDITIONS_NOT_TICKED, 'alert-danger')
-            return redirect('/register')
+            if not request.form.get("privacy"):
+                flash(messages.TERMS_AND_CONDITIONS_NOT_TICKED, 'alert-danger')
+                break
 
-        # check username is not already in use
-        if session.query(User).filter_by(username=new_username).first():
-            flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
-            return render_template('register.html')
+            # check username is not already in use
+            if session.query(User).filter_by(username=new_username).first():
+                flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
+                break
 
-        # check password and confirmation are the same
-        if request.form.get("password") != request.form.get("confirm_password"):
-            flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
-            return render_template('register.html')
+            # check password and confirmation are the same
+            if request.form.get("password") != request.form.get("confirm_password"):
+                flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
+                break
 
-        try:
-            user = User(new_username, new_password,
-                        new_f_name, new_surname,
-                        new_email, date.today())
-        except (InvalidEmailError, InvalidPasswordError) as error:
-            flash(str(error), 'alert-danger')
-            return redirect('/register')
+            try:
+                user = User(new_username, new_password,
+                            new_f_name, new_surname,
+                            new_email, date.today())
+                session.add(user)
+                session.commit()
+                user = session.query(User).filter_by(username=new_username).first()
+                login_user(user)
 
-        session.add(user)
-        session.commit()
-        user = session.query(User).filter_by(username=new_username).first()
-        login_user(user)
+                return redirect('/account')
+            except (InvalidEmailError, InvalidPasswordError) as error:
+                flash(str(error), 'alert-danger')
+                break
 
-        return redirect('/account')
-
-    # For GET requests
+    # For GET requests or any of the error states that broke from the loop above
     return render_template("register.html")
 
 
