@@ -6,10 +6,13 @@ from flask import Blueprint
 from flask_login import login_required, current_user
 
 from flaskr.auth.auth import session
-from flaskr.labels.messages import ACCOUNT_DELETED_SUCCESS
+from flaskr.labels.messages import ACCOUNT_DELETED_SUCCESS, ACCOUNT_UPDATED_SUCCESS, NO_CHANGES_SAVED
 from flaskr.models.player import Player
 from flaskr.models.game import Game
 from flaskr.models.user import User
+
+from flaskr.helpers.helpers import is_valid_email
+from flaskr.errors.errors import InvalidEmailError
 
 
 account_bp = Blueprint('account_bp', __name__, template_folder='templates')
@@ -40,3 +43,39 @@ def delete_account():
     session.commit()
     flash(ACCOUNT_DELETED_SUCCESS, 'alert-success')
     return redirect('/logout')
+
+
+@account_bp.route("/edit_account", methods=["GET", "POST"])
+@login_required
+def edit_account():
+    if request.method == "GET":
+        return render_template('edit_account.html', account=current_user)
+
+    button_clicked = request.form.get('submit')
+    if button_clicked == 'update':
+        new_username = request.form.get("username")
+        new_f_name = request.form.get("f_name")
+        new_surname = request.form.get("surname")
+        new_email = request.form.get("email")
+
+        if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
+            flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
+            return render_template('edit_account.html', account=current_user)
+
+        try:
+            current_user.username = new_username
+            current_user.f_name = new_f_name
+            current_user.surname = new_surname
+            current_user.email = is_valid_email(new_email)
+
+            session.commit()
+            flash(ACCOUNT_UPDATED_SUCCESS, 'alert-success')
+            return redirect('/account')
+        except InvalidEmailError as error:
+            flash(str(error), 'alert-danger')
+            return render_template('edit_account.html', account=current_user)
+
+    else:
+        # cancel was clicked
+        flash(NO_CHANGES_SAVED, 'alert-success')
+        return redirect('/account')
