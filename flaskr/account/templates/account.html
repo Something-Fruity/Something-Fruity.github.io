@@ -6,15 +6,15 @@
 
 {% block content %}
     <div>{{_('Welcome')}}, {{ account.username }}. <br>
-    your first name is: {{ account.f_name }} <br>
-    your surname is: {{ account.surname }} <br>
-    your email is: {{ account.email }} <br>
-    your language is : {{ account.language }}<br><br></div>
+    {{_('your first name is')}}: {{ account.f_name }} <br>
+    {{_('your surname is')}}: {{ account.surname }} <br>
+    {{_('your email is')}}: {{ account.email }} <br>
+    {{_('your language is')}} : {{ account.language }}<br><br></div>
 
     <div>
         {%  if stats %}
             {% for key, value in stats.items() %}
-                {{ key }}: {{ value }} games <br>
+                {{ key }}: {{ value }} {{_('games')}} <br>
             {% endfor %}
         {% endif %}
     </div>
