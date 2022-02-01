@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Game statistics
+    {{_('Game statistics')}}
 {% endblock %}
 
 {% block content %}
-    Welcome, {{ account.f_name }}. <br>
-    your first name is: {{ account.f_name }} <br>
-    your surname is: {{ account.surname }} <br>
-    your email is: {{ account.email }} <br>
-    your language is : {{ account.language }}<br>
+<div>{{_('Welcome')}}, {{ account.username }}. <br>
+    {{_('your first name is')}}: {{ account.f_name }} <br>
+    {{_('your surname is')}}: {{ account.surname }} <br>
+    {{_('your email is')}}: {{ account.email }} <br>
+    {{_('your language is')}} : {{ account.language }}<br><br></div>
 {% endblock %}
