@@ -12,11 +12,13 @@ class Config:   # pylint: disable=too-few-public-methods
     FLASK_APP = os.environ.get('FLASK_APP')
     SECRET_KEY = os.environ.get('SECRET_KEY')
     TEMPLATES_AUTO_RELOAD = True
+    BABEL_DEFAULT_LOCALE = 'en'
     LANGUAGES = ['en', 'fr']
 
     SESSION_FILE_DIR = mkdtemp()
-    SESSION_PERMANENT = False
+    SESSION_PERMANENT = True
     SESSION_TYPE = "filesystem"
+    SESSION_COOKIE_PATH = "/"
 
     MYSQL_USER = os.environ.get('MYSQL_USER')
     MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD')
