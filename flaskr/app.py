@@ -1,6 +1,6 @@
 """Initiate the application"""
 
-from flask import Flask, flash, redirect, g
+from flask import Flask, flash, redirect, request
 from flask import session as S
 #from flask_session import Session as Ses
 from flask_login import LoginManager
@@ -81,7 +81,6 @@ def get_locale():
 def before_request():
     global language
     print('####in before request',language)
-    print(get_locale())
     get_locale()
     print('####end of before_request')
 

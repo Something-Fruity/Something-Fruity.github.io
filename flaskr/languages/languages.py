@@ -9,11 +9,14 @@ language_bp = Blueprint('language_bp', __name__, template_folder='templates')
 
 @language_bp.route("/language")
 def lang():
-    global language_user    
-    global language
-    print('####language route')
-    language='fr'
-    S['language'] = 'fr'
+    current_language = S['language']
+    if current_language == 'fr':
+        S['language'] = 'en'
+    else:
+        S['language'] = 'fr'
     print('session: ',S['language'])
     print('####end language route')
-    return redirect('/account')
+    if not 'current_url' in S:
+        r = request.url_rule
+        S['current_url'] = r.rule
+    return redirect(S['current_url'])
