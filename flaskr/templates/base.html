@@ -28,29 +28,11 @@
                         <li class="nav-item"><a class="nav-link" href="/game">Game</a></li>
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item" class="nav-link">
-                            <div class="nav-link">
-                            <label for="change-language">Language:</label>
-                            <select name="change-language">
-                                <option value="eng">english/Anglaise</option>
-                                <option value="fr">french/française</option>
-                            </select>
-                        </div>
-                        </li>
                         <li><button> <a href="/language">{% if S['language']=='fr' %}English{% else %}French{% endif %}</a></button></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item" class="nav-link">
-                            <div class="nav-link">
-                            <label for="change-language">Language:</label>
-                            <select name="change-language">
-                                <option value="eng">english/Anglaise</option>
-                                <option value="fr">french/française</option>
-                            </select>
-                        </div>
-                        </li>
                         <li><button> <a href="/language">{% if S['language']=='fr' %}English{% else %}French{% endif %}</a></button></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
