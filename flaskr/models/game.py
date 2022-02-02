@@ -1,7 +1,7 @@
 """Defines a game class mapped to the game table in the database"""
 
 from sqlalchemy import Column, Date, Integer, ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import relationship
 
 from flaskr.models.base import Base
 # pylint: disable=unused-import
@@ -20,8 +20,8 @@ class Game(Base):  # pylint: disable=too-few-public-methods
     score = Column(Integer)
     level = Column(Integer)
     datetime = Column(Date)
-    player = relationship("Player", backref=backref("game", uselist=False))
-    persona = relationship("Persona", backref=backref("persona", uselist=False))
+    player = relationship("Player", back_populates="games")
+    persona = relationship("Persona", back_populates="games")
 
     # pylint: disable=too-many-arguments
     def __init__(self, player, persona, score, level, datetime):

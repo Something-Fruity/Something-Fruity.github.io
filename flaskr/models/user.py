@@ -1,8 +1,9 @@
 """Defines a user class mapped to the user table in the database"""
 
 from sqlalchemy import Column, String, Integer, DateTime
-from werkzeug.security import check_password_hash, generate_password_hash
+from sqlalchemy.orm import relationship
 
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
 
 from flaskr.models.base import Base
@@ -22,7 +23,11 @@ class User(UserMixin, Base):  # pylint: disable=too-few-public-methods
     surname = Column(String)
     email = Column(String)
     last_login = Column(DateTime, index=False, unique=False, nullable=True)
+<<<<<<< HEAD
     language = Column(String)
+=======
+    players = relationship("Player", back_populates="user", cascade="all, delete, delete-orphan")
+>>>>>>> main
 
     # pylint: disable=too-many-arguments
     def __init__(self, username, password, f_name, surname, email, last_login, language):

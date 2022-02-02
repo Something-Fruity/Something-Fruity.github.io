@@ -99,6 +99,7 @@ class TestRegister(TestCase):
         self.assertIn('name="f_name"', html)
         self.assertIn('name="surname"', html)
         self.assertIn('name="email"', html)
+        self.assertIn('name="privacy"', html)
 
     def test_registration_form_menu_only_contains_login_and_register_menu_items(self):
         response = self.client.get('/register')
@@ -113,33 +114,39 @@ class TestRegister(TestCase):
         self.assertIn('href="/login">Log In', html)
 
     def test_register_with_empty_form_flashes_all_fields_required_message(self):
-        data = dict(username="", password="", confirm_password="", f_name="", surname="", email="")
+        data = dict(username="", password="", confirm_password="", f_name="", surname="", email="", privacy="")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.ALL_FIELDS_REQUIRED, encoding='utf-8'), response.data)
 
     def test_register_with_one_field_missing_flashes_all_fields_required_message(self):
         data = dict(username="name", password="password", confirm_password="password", f_name="a",
-                    surname="user", email="")
+                    surname="user", email="", privacy="on")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.ALL_FIELDS_REQUIRED, encoding='utf-8'), response.data)
 
     def test_register_with_password_not_confirmed_flashes_non_matching_password_message(self):
         data = dict(username="username", password="password", confirm_password="wrong password", f_name="a",
-                    surname="user", email="user@user.com")
+                    surname="user", email="user@user.com", privacy="on")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.NON_MATCHING_PASSWORD, encoding='utf-8'), response.data)
 
     def test_register_with_invalid_password_flashes_invalid_password_message(self):
         data = dict(username="invalid_password_user", password="1", confirm_password="1", f_name="a",
-                    surname="user", email="user@user.com")
+                    surname="user", email="user@user.com", privacy="on")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.INVALID_PASSWORD, encoding='utf-8'), response.data)
 
     def test_register_with_invalid_email_flashes_invalid_email_message(self):
         data = dict(username="invalid_email_user", password="password", confirm_password="password", f_name="a",
-                    surname="user", email="invalid_email")
+                    surname="user", email="invalid_email", privacy="on")
         response = self.client.post('/register', data=data, follow_redirects=True)
         self.assertIn(bytes(messages.INVALID_EMAIL_ADDRESS, encoding='utf-8'), response.data)
+
+    def test_register_with_ts_and_cs_checkbox_unchecked_flashes_terms_and_conditions_not_ticked_message(self):
+        data = dict(username="invalid_email_user", password="password", confirm_password="password", f_name="a",
+                    surname="user", email="invalid_email", privacy="off")
+        response = self.client.post('/register', data=data, follow_redirects=True)
+        self.assertIn(bytes(messages.TERMS_AND_CONDITIONS_NOT_TICKED, encoding='utf-8'), response.data)
 
 
 # pylint: disable=missing-function-docstring

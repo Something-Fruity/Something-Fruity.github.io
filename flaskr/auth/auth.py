@@ -41,8 +41,8 @@ def login():
         if user and user.check_password(password):
             flash(f'Welcome, {user.username}.', 'alert-success')
             session.query(User).filter_by(username=username).update({'last_login': date.today()})
-            session.commit()
             login_user(user)
+            session.commit()
             return redirect('/account')
 
         # if the user doesn't exist or the password is incorrect
@@ -64,6 +64,7 @@ def register():
         new_email = request.form.get("email")
         new_language = request.form.get("language")
 
+<<<<<<< HEAD
         if new_username == '' \
                 or new_password == '' \
                 or new_f_name == '' \
@@ -97,6 +98,46 @@ def register():
         return render_template("account.html", account=user, stats=None)
 
     # For GET requests
+=======
+        while True:
+            if new_username == '' \
+                    or new_password == '' \
+                    or new_f_name == '' \
+                    or new_surname == '' \
+                    or new_email == '':
+                flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
+                break
+
+            if not request.form.get("privacy"):
+                flash(messages.TERMS_AND_CONDITIONS_NOT_TICKED, 'alert-danger')
+                break
+
+            # check username is not already in use
+            if session.query(User).filter_by(username=new_username).first():
+                flash(messages.ACCOUNT_ALREADY_EXISTS, 'alert-danger')
+                break
+
+            # check password and confirmation are the same
+            if request.form.get("password") != request.form.get("confirm_password"):
+                flash(messages.NON_MATCHING_PASSWORD, 'alert-danger')
+                break
+
+            try:
+                user = User(new_username, new_password,
+                            new_f_name, new_surname,
+                            new_email, date.today())
+                session.add(user)
+                session.commit()
+                user = session.query(User).filter_by(username=new_username).first()
+                login_user(user)
+
+                return redirect('/account')
+            except (InvalidEmailError, InvalidPasswordError) as error:
+                flash(str(error), 'alert-danger')
+                break
+
+    # For GET requests or any of the error states that broke from the loop above
+>>>>>>> main
     return render_template("register.html")
 
 

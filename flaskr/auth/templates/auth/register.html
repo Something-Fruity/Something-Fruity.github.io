@@ -31,8 +31,10 @@
                 <option value="en">{{_('english')}}</option>
                 <option value="fr">{{_('french')}}</option>
                                                               
-              </select></div>
-        </div>
+              </select>
+              <label for='privacy'>I accept the <a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">terms and conditions</a> and have read the <a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">Privacy Policy.</a></label>
+              <input type='checkbox' id='privacy' class="form-control" name="privacy">
+          </div>
         <button id='submit' class="btn btn-primary" type="submit">{{_('Register')}}</button>
     </form>
 {% endblock %}

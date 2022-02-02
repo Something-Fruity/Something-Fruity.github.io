@@ -14,7 +14,8 @@ class Persona(Base):  # pylint: disable=too-few-public-methods
     name = Column(String)
     image = Column(String)
     created_by = Column(Integer, ForeignKey('player.id'))
-    player = relationship("Player", backref="persona")
+    player = relationship("Player", back_populates="personas")
+    games = relationship("Game", back_populates="persona", cascade="all, delete, delete-orphan")
 
     def ___init__(self, name, image, player):
         self.name = name
