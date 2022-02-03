@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Something fruity GAME
+{{_('Something fruity GAME')}}
 {% endblock %}
 
 {% block content %}
-    Welcome, {{ account.f_name }}. <br>
-    This page will contain our browser game
+{{_('Welcome')}}, {{ account.f_name }}. <br>
+{{_('This page will contain our browser game')}}
 {% endblock %}
