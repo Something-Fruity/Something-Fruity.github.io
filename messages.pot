@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 00:43+0000\n"
+"POT-Creation-Date: 2022-02-02 09:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,38 @@ msgstr ""
 
 #: flaskr/account/templates/account.html:4
 msgid "Home"
-msgstr "FRENCH"
+msgstr ""
 
 #: flaskr/account/templates/account.html:8
+#: flaskr/account/templates/stats.html:8
 msgid "Welcome"
-msgstr "FRENCH"
+msgstr ""
+
+#: flaskr/account/templates/account.html:9
+#: flaskr/account/templates/stats.html:9
+msgid "your first name is"
+msgstr ""
+
+#: flaskr/account/templates/account.html:10
+#: flaskr/account/templates/stats.html:10
+msgid "your surname is"
+msgstr ""
+
+#: flaskr/account/templates/account.html:11
+#: flaskr/account/templates/stats.html:11
+msgid "your email is"
+msgstr ""
+
+#: flaskr/account/templates/account.html:12
+#: flaskr/account/templates/stats.html:12
+msgid "your language is"
+msgstr ""
+
+#: flaskr/account/templates/account.html:17
+msgid "games"
+msgstr ""
+
+#: flaskr/account/templates/stats.html:4
+msgid "Game statistics"
+msgstr ""
 

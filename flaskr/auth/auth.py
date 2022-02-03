@@ -90,7 +90,7 @@ def register():
             try:
                 user = User(new_username, new_password,
                             new_f_name, new_surname,
-                            new_email, date.today())
+                            new_email, date.today(), new_language)
                 session.add(user)
                 session.commit()
                 user = session.query(User).filter_by(username=new_username).first()

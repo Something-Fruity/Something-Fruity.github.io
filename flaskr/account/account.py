@@ -49,7 +49,7 @@ def delete_account():
 @login_required
 def edit_account():
     if request.method == "GET":
-        return render_template('edit_account.html', account=current_user)
+        return render_template('edit_account.html', account=current_user, S=S)
 
     button_clicked = request.form.get('submit')
     if button_clicked == 'update':
@@ -61,7 +61,7 @@ def edit_account():
 
         if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
             flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
-            return render_template('edit_account.html', account=current_user)
+            return render_template('edit_account.html', account=current_user, S=S)
 
         try:
             current_user.username = new_username
@@ -75,7 +75,7 @@ def edit_account():
             return redirect('/account')
         except InvalidEmailError as error:
             flash(str(error), 'alert-danger')
-            return render_template('edit_account.html', account=current_user)
+            return render_template('edit_account.html', account=current_user, S=S)
 
     else:
         # cancel was clicked
