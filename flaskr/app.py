@@ -15,7 +15,7 @@ from flaskr.auth.auth import auth_bp
 from flaskr.account.account import account_bp
 from flaskr.languages.languages import language_bp
 
-from flask_babel import Babel
+from flask_babel import Babel, gettext
 
 login_manager = LoginManager()
 
