@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Edit Account Details
+{{_('Edit Account Details')}}
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
             <input id='email' class="form-control" name="email" value={{account.email}} type="text">
         </div>
 
-        <button id='update' class="btn" type="submit" name="submit" value="update">Update</button>
-        <button id='cancel' class="btn btn-primary" type="submit" name="submit" value="cancel">Cancel</button>
+        <button id='update' class="btn" type="submit" name="submit" value="update">{{_('Update')}}</button>
+        <button id='cancel' class="btn btn-primary" type="submit" name="submit" value="cancel">{{_('Cancel')}}</button>
     </form>
 {% endblock %}
