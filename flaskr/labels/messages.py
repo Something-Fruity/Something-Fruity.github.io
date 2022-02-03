@@ -1,5 +1,6 @@
 """Common labels used in the application"""
 
+from flask_babel import gettext
 ACCOUNT_ALREADY_EXISTS = gettext('There is already an account associated with this username.')
 ACCOUNT_DELETED_SUCCESS = gettext('Your account has been successfully deleted.')
 ACCOUNT_UPDATED_SUCCESS = gettext('Your account details were updated successfully.')
