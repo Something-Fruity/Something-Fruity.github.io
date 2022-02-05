@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Register
+{{_('Register')}}
 {% endblock %}
 
 {% block content %}
-    <p>Register for a new account or <a href='/login'>login</a> if you have an account already</p><br>
+    <p>{{_('Register for a new account or ')}}<a href='/login'>{{_('login')}}</a>{{_(' if you have an account already')}}</p><br>
     <form action="/register" method="post">
         <div class="form-group">
             <input id='username' autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
@@ -14,21 +14,27 @@
             <input id='pass' class="form-control" name="password" placeholder="Password" type="password">
         </div>
         <div class="form-group">
-            <input id='confirm-pass' class="form-control" name="confirm_password" placeholder="Confirm Password" type="password">
+            <input id='confirm-pass' class="form-control" name="confirm_password" placeholder="{{_('Confirm Password')}}" type="password">
         </div>
         <div class="form-group">
-            <input id='f_name' class="form-control" name="f_name" placeholder='Forename' type="text">
+            <input id='f_name' class="form-control" name="f_name" placeholder="{{_('Forename')}}" type="text">
         </div>
         <div class="form-group">
-            <input id='surname' class="form-control" name="surname" placeholder='Surname' type="text">
+            <input id='surname' class="form-control" name="surname" placeholder="{{_('Surname')}}" type="text">
         </div>
         <div class="form-group">
             <input id='email' class="form-control" name="email" placeholder='Email' type="text">
         </div>
         <div class="form-group">
-            <label for='privacy'>I accept the <a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">terms and conditions</a> and have read the <a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">Privacy Policy.</a></label>
-            <input type='checkbox' id='privacy' class="form-control" name="privacy">
-        </div>
-        <button id='submit' class="btn btn-primary" type="submit">Register</button>
+            <select name="language" class="form-control">
+                <option selected="true" disabled="disabled">{{_('Choose language')}}</option>    
+                <option value="en">{{_('english')}}</option>
+                <option value="fr">{{_('french')}}</option>
+                                                              
+              </select>
+              <label for='privacy'>{{_('I accept the')}} <a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">{{_('terms and conditions')}}</a>{{_(' and have read the ')}}<a href="https://something-fruity.github.io/" target="_blank" rel="noopener noreferrer">{{_('Privacy Policy.')}}</a></label>
+              <input type='checkbox' id='privacy' class="form-control" name="privacy">
+          </div>
+        <button id='submit' class="btn btn-primary" type="submit">{{_('Register')}}</button>
     </form>
 {% endblock %}

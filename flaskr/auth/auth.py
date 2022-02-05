@@ -62,6 +62,7 @@ def register():
         new_f_name = request.form.get("f_name")
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
+        new_language = request.form.get("language")
 
         while True:
             if new_username == '' \
@@ -89,7 +90,7 @@ def register():
             try:
                 user = User(new_username, new_password,
                             new_f_name, new_surname,
-                            new_email, date.today())
+                            new_email, date.today(), new_language)
                 session.add(user)
                 session.commit()
                 user = session.query(User).filter_by(username=new_username).first()

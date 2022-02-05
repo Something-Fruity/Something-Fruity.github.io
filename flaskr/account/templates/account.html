@@ -1,51 +1,49 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Home
+    {{_('Home')}}
 {% endblock %}
 
 {% block content %}
-        <div>Welcome, {{ account.username }}. <br>
-        your first name is: {{ account.f_name }} <br>
-        your surname is: {{ account.surname }} <br>
-        your email is: {{ account.email }} <br></div>
+    <div>{{_('Welcome')}}, {{ account.username }}. <br>
+    {{_('your first name is')}}: {{ account.f_name }} <br>
+    {{_('your surname is')}}: {{ account.surname }} <br>
+    {{_('your email is')}}: {{ account.email }} <br>
+    {{_('your language is')}} : {{ account.language }}<br><br></div>
 
-        <div>
-            {%  if stats %}
-                {% for key, value in stats.items() %}
-                    {{ key }}: {{ value }} games <br>
-                {% endfor %}
-            {% endif %}
-        </div>
-
-        <div>
-            <form action="/edit_account" method="get">
-                <input type="submit" value="Edit" class="btn btn-primary">
-            </form>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
-        </div>
-          <div class="modal fade" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Permanently Deleting Account</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>Are you sure you want to delete your account?<br> This action cannot be reversed.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-                  <form action="/delete_account" method="post">
-                    <input type="submit" value="Delete" class="btn btn-danger">
-                  </form>
-                </div>
-              </div>
-            </div>
+    <div>
+        {%  if stats %}
+            {% for key, value in stats.items() %}
+                {{ key }}: {{ value }} {{_('games')}} <br>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div>
+      <form action="/edit_account" method="get">
+          <button type="submit" value="Edit" class="btn btn-primary">{{_('Edit')}}</button>
+      </form>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">{{_('Delete')}}</button>
+  </div>
+    <div class="modal fade" id="exampleModalCenter">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">{{_('Permanently Deleting Account')}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body">
+            <p>{{_('Are you sure you want to delete your account?')}}<br>{{_('This action cannot be reversed.')}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Cancel')}}</button>
 
+            <form action="/delete_account" method="post">
+              <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}
-

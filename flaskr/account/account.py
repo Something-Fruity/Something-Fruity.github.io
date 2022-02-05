@@ -14,7 +14,7 @@ from flaskr.models.user import User
 
 from flaskr.helpers.helpers import is_valid_email
 from flaskr.errors.errors import InvalidEmailError
-
+from flaskr.app import S
 
 account_bp = Blueprint('account_bp', __name__, template_folder='templates')
 
@@ -26,14 +26,14 @@ def account():
 
     # Query database for players associated with the current user's account
     players = session.query(Player).filter_by(user_id=current_user.id).all()
-
+    S['current_url'] = request.url_rule.rule
     # How many games has each player played?
     stats = {}
     for player in players:
         num_games = len(session.query(Game).filter_by(player_id=player.id).all())
         stats[player.name] = num_games
 
-    return render_template('account.html', account=current_user, stats=stats)
+    return render_template('account.html', account=current_user, stats=stats, S=S)
 
 
 @account_bp.route("/delete_account", methods=["POST"])
@@ -50,7 +50,7 @@ def delete_account():
 @login_required
 def edit_account():
     if request.method == "GET":
-        return render_template('edit_account.html', account=current_user)
+        return render_template('edit_account.html', account=current_user, S=S)
 
     # When request method is post
     button_clicked = request.form.get('submit')
@@ -59,6 +59,7 @@ def edit_account():
         new_f_name = request.form.get("f_name")
         new_surname = request.form.get("surname")
         new_email = request.form.get("email")
+        new_language = request.form.get("language")
 
         while True:
             if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
@@ -75,6 +76,7 @@ def edit_account():
                 current_user.f_name = new_f_name
                 current_user.surname = new_surname
                 current_user.email = is_valid_email(new_email)
+                current_user.language = new_language
 
                 session.commit()
                 flash(ACCOUNT_UPDATED_SUCCESS, 'alert-success')
@@ -83,7 +85,7 @@ def edit_account():
             except InvalidEmailError as error:
                 flash(str(error), 'alert-danger')
                 break
-        return render_template('edit_account.html', account=current_user)
+        return render_template('edit_account.html', account=current_user, S=S)
 
     else:
         # cancel was clicked

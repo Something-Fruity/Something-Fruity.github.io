@@ -17,7 +17,8 @@ CREATE TABLE user (
     f_name VARCHAR(30) NOT NULL,
     surname VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    last_login DATETIME
+    last_login DATETIME,
+    language VARCHAR(3)
 );
 
 
@@ -51,8 +52,8 @@ CREATE TABLE persona (
 
 
 -- Insert sample data
-INSERT INTO `user` VALUES (1,'WhiteFamily','pbkdf2:sha256:260000$jVVzEctPpRhOWilC$c6bfc6097150f09f34f51d64cad272c812fb828b50fea38f0a00dca656fb384b','Walter','White','heisenberg@hotmail.com', '2021-09-09'),
-                             (2,'SimpsonFamily','pbkdf2:sha256:260000$M3WYwna0COf6CWoK$6194a11836ac29c5b745bbe035fcc06eec13259c50fc3189769f60465e2aa80e','Homer','Simpson','homer@donuts.com', '2021-12-12');
+INSERT INTO `user` VALUES (1,'WhiteFamily','pbkdf2:sha256:260000$jVVzEctPpRhOWilC$c6bfc6097150f09f34f51d64cad272c812fb828b50fea38f0a00dca656fb384b','Walter','White','heisenberg@hotmail.com', '2021-09-09', 'en'),
+                             (2,'SimpsonFamily','pbkdf2:sha256:260000$M3WYwna0COf6CWoK$6194a11836ac29c5b745bbe035fcc06eec13259c50fc3189769f60465e2aa80e','Homer','Simpson','homer@donuts.com', '2021-12-12', 'fr');
 
 INSERT INTO `player` VALUES (1, 1,'Skylar'), (2, 1,'Pinkman'), (3, 2, 'Bart'), (4, 2, 'Lisa');
 
