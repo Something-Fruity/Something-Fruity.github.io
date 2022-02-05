@@ -6,7 +6,8 @@ from flask import Blueprint
 from flask_login import login_required, current_user
 
 from flaskr.auth.auth import session
-from flaskr.labels.messages import ACCOUNT_DELETED_SUCCESS, ACCOUNT_UPDATED_SUCCESS, NO_CHANGES_SAVED
+from flaskr.labels.messages import ACCOUNT_DELETED_SUCCESS, ACCOUNT_ALREADY_EXISTS, ALL_FIELDS_REQUIRED, \
+    ACCOUNT_UPDATED_SUCCESS, NO_CHANGES_SAVED
 from flaskr.models.player import Player
 from flaskr.models.game import Game
 from flaskr.models.user import User
@@ -51,6 +52,7 @@ def edit_account():
     if request.method == "GET":
         return render_template('edit_account.html', account=current_user, S=S)
 
+    # When request method is post
     button_clicked = request.form.get('submit')
     if button_clicked == 'update':
         new_username = request.form.get("username")
@@ -59,23 +61,31 @@ def edit_account():
         new_email = request.form.get("email")
         new_language = request.form.get("language")
 
-        if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
-            flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
-            return render_template('edit_account.html', account=current_user, S=S)
+        while True:
+            if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
+                flash(ALL_FIELDS_REQUIRED, 'alert-danger')
+                break
 
-        try:
-            current_user.username = new_username
-            current_user.f_name = new_f_name
-            current_user.surname = new_surname
-            current_user.email = is_valid_email(new_email)
-            current_user.language = new_language
+            # check username is not already in use
+            if session.query(User).filter_by(username=new_username).first():
+                flash(ACCOUNT_ALREADY_EXISTS, 'alert-danger')
+                break
 
-            session.commit()
-            flash(ACCOUNT_UPDATED_SUCCESS, 'alert-success')
-            return redirect('/account')
-        except InvalidEmailError as error:
-            flash(str(error), 'alert-danger')
-            return render_template('edit_account.html', account=current_user, S=S)
+            try:
+                current_user.username = new_username
+                current_user.f_name = new_f_name
+                current_user.surname = new_surname
+                current_user.email = is_valid_email(new_email)
+                current_user.language = new_language
+
+                session.commit()
+                flash(ACCOUNT_UPDATED_SUCCESS, 'alert-success')
+                return redirect('/account')
+
+            except InvalidEmailError as error:
+                flash(str(error), 'alert-danger')
+                break
+        return render_template('edit_account.html', account=current_user, S=S)
 
     else:
         # cancel was clicked

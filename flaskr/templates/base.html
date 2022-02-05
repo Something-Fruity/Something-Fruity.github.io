@@ -18,7 +18,7 @@
     </head>
 
     <body>
-{#    <audio id="audio" src="/static/sounds.mp3" loop autoplay>Audio</audio>#}
+    <audio id="audio" src="/static/sounds.mp3" loop>Audio</audio>
         <nav class="navbar navbar-expand-md navbar-light bg-light border">
             <a class="navbar-brand" href="/"><span class="yellow">Something </span><span class="green">  Fruity</span></a>
             <div class="collapse navbar-collapse" id="navbar">
@@ -30,11 +30,13 @@
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/language">{% if S['language']=='fr' %}English - Anglaise{% else %}French - Française{% endif %}</a></button></li>
+                        <li class="nav-item" id="sound"><a class="nav-link" href="javascript:void(0);" onclick="toggleSound()">{{_('Sound')}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/language">{% if S['language']=='fr' %}English - Anglaise{% else %}French - Française{% endif %}</a></li>
+                        <li class="nav-item" id="sound1"><a class="nav-link" href="javascript:void(0);" onclick="toggleSound()">{{_('Sound')}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                         <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     </ul>
@@ -59,6 +61,61 @@
         <footer class="small text-center text-muted">
             {{_('Implemented in Python using the Flask framework')}}
         </footer>
+
+        <script type="text/javascript">
+            let audio = document.getElementById("audio");
+            let sound = document.getElementById("sound");
+            let sound1 = document.getElementById("sound1");
+
+            window.onload = function playSound() {
+                audio.muted = sessionStorage.getItem('muted');
+                audio.play();
+                if (sound) {
+                    if (sessionStorage.getItem('muted')) {
+                        sound.classList.add("no-sound");
+                    } else {
+                        sound.classList.remove("no-sound");
+                    }
+                }else{
+                    if (sessionStorage.getItem('muted')) {
+                        sound1.classList.add("no-sound");
+                    } else {
+                        sound1.classList.remove("no-sound");
+                    }
+                }
+            }
+
+            function toggleSound() {
+                if (sound) {
+                    if (audio.muted === false){
+                        sessionStorage.setItem('muted', 'true');
+                        sound.classList.add("no-sound");
+                        audio.muted = true;
+                    } else {
+                        sessionStorage.removeItem('muted');
+                        sound.classList.remove("no-sound");
+                        audio.muted = false;
+                    }
+                } else {
+                    if (audio.muted === false){
+                        sessionStorage.setItem('muted', 'true');
+                        sound1.classList.add("no-sound");
+                        audio.muted = true;
+                    } else {
+                        sessionStorage.removeItem('muted');
+                        sound1.classList.remove("no-sound");
+                        audio.muted = false;
+                    }
+                }
+            }
+        </script>
+
+        <style>
+            .no-sound
+                {
+                    text-decoration: line-through;
+                }
+        </style>
 
     </body>
 </html>

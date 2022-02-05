@@ -109,5 +109,6 @@ def register():
 def logout():
     """Log user out"""
     logout_user()
+    session.rollback()
     # Redirect user to login form
     return redirect("/login")
