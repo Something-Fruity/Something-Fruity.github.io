@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-02 09:43+0000\n"
-"PO-Revision-Date: 2022-02-02 09:45+0000\n"
+"POT-Creation-Date: 2022-02-03 12:30+0000\n"
+"PO-Revision-Date: 2022-02-03 12:31+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -20,38 +20,199 @@ msgstr ""
 
 #: flaskr/account/templates/account.html:4
 msgid "Home"
-msgstr "Accueil"
+msgstr ""
 
 #: flaskr/account/templates/account.html:8
-#: flaskr/account/templates/stats.html:8
+#: flaskr/account/templates/stats.html:8 flaskr/game/templates/game.html:8
 msgid "Welcome"
-msgstr "Bienvenu/e"
+msgstr ""
 
 #: flaskr/account/templates/account.html:9
 #: flaskr/account/templates/stats.html:9
 msgid "your first name is"
-msgstr "ton prénom est"
+msgstr ""
 
 #: flaskr/account/templates/account.html:10
 #: flaskr/account/templates/stats.html:10
 msgid "your surname is"
-msgstr "votre nom de famille est"
+msgstr ""
 
 #: flaskr/account/templates/account.html:11
 #: flaskr/account/templates/stats.html:11
 msgid "your email is"
-msgstr "votre e-mail est"
+msgstr ""
 
 #: flaskr/account/templates/account.html:12
 #: flaskr/account/templates/stats.html:12
 msgid "your language is"
-msgstr "ta langue est"
+msgstr ""
 
 #: flaskr/account/templates/account.html:17
 msgid "games"
-msgstr "jeux"
+msgstr ""
+
+#: flaskr/account/templates/account.html:23
+msgid "Edit"
+msgstr ""
+
+#: flaskr/account/templates/account.html:25
+msgid "Delete"
+msgstr ""
+
+#: flaskr/account/templates/account.html:31
+msgid "Permanently Deleting Account"
+msgstr ""
+
+#: flaskr/account/templates/account.html:37
+msgid "Are you sure you want to delete your account?"
+msgstr ""
+
+#: flaskr/account/templates/account.html:37
+msgid "This action cannot be reversed."
+msgstr ""
+
+#: flaskr/account/templates/account.html:40
+#: flaskr/account/templates/edit_account.html:24
+msgid "Cancel"
+msgstr ""
+
+#: flaskr/account/templates/edit_account.html:4
+msgid "Edit Account Details"
+msgstr ""
+
+#: flaskr/account/templates/edit_account.html:23
+msgid "Update"
+msgstr ""
 
 #: flaskr/account/templates/stats.html:4
 msgid "Game statistics"
-msgstr "Statistiques de jeu"
+msgstr ""
+
+#: flaskr/auth/templates/auth/login.html:4
+#: flaskr/auth/templates/auth/login.html:15
+msgid "Log In"
+msgstr ""
+
+#: flaskr/auth/templates/auth/login.html:10
+msgid "Username"
+msgstr ""
+
+#: flaskr/auth/templates/auth/login.html:13
+msgid "Password"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:4
+#: flaskr/auth/templates/auth/register.html:38
+msgid "Register"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:8
+msgid "Register for a new account or "
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:8
+msgid "login"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:8
+msgid " if you have an account already"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:17
+msgid "Confirm Password"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:20
+msgid "Forename"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:23
+msgid "Surname"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:30
+msgid "Choose language"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:31
+msgid "english"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:32
+msgid "french"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:35
+msgid "I accept the"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:35
+msgid "terms and conditions"
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:35
+msgid " and have read the "
+msgstr ""
+
+#: flaskr/auth/templates/auth/register.html:35
+msgid "Privacy Policy."
+msgstr ""
+
+#: flaskr/game/templates/game.html:4
+msgid "Something fruity GAME"
+msgstr ""
+
+#: flaskr/game/templates/game.html:9
+msgid "This page will contain our browser game"
+msgstr ""
+
+#: flaskr/labels/messages.py:4
+msgid "There is already an account associated with this username."
+msgstr ""
+
+#: flaskr/labels/messages.py:5
+msgid "Your account has been successfully deleted."
+msgstr ""
+
+#: flaskr/labels/messages.py:6
+msgid "Your account details were updated successfully."
+msgstr ""
+
+#: flaskr/labels/messages.py:7
+msgid "You must complete all fields."
+msgstr ""
+
+#: flaskr/labels/messages.py:8
+msgid "INCORRECT DETAILS: Please check your details and try again."
+msgstr ""
+
+#: flaskr/labels/messages.py:9
+msgid "Invalid email address."
+msgstr ""
+
+#: flaskr/labels/messages.py:10
+msgid "INVALID PASSWORD: The password must contain at least 6 characters."
+msgstr ""
+
+#: flaskr/labels/messages.py:11
+msgid "No changes were saved."
+msgstr ""
+
+#: flaskr/labels/messages.py:12
+msgid "Your password and confirmation do not match."
+msgstr ""
+
+#: flaskr/labels/messages.py:13
+msgid "You must be logged in to view that page."
+msgstr ""
+
+#: flaskr/labels/messages.py:14
+msgid ""
+"You must accept the terms and conditions to create and register a new "
+"account."
+msgstr ""
+
+#: flaskr/templates/base.html:60
+msgid "Implemented in Python using the Flask framework"
+msgstr ""
 
