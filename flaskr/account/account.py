@@ -66,10 +66,11 @@ def edit_account():
                 flash(ALL_FIELDS_REQUIRED, 'alert-danger')
                 break
 
-            # check username is not already in use
-            if session.query(User).filter_by(username=new_username).first():
-                flash(ACCOUNT_ALREADY_EXISTS, 'alert-danger')
-                break
+            # if username updated, check it is not already in use
+            if new_username != current_user.username:
+                if session.query(User).filter_by(username=new_username).first():
+                    flash(ACCOUNT_ALREADY_EXISTS, 'alert-danger')
+                    break
 
             try:
                 current_user.username = new_username
@@ -91,3 +92,13 @@ def edit_account():
         # cancel was clicked
         flash(NO_CHANGES_SAVED, 'alert-success')
         return redirect('/account')
+
+
+@account_bp.route("/add_player", methods=["POST"])
+@login_required
+def add_player():
+    playername = request.form.get('playername')
+    current_user.players.append(Player(current_user, playername))
+    session.commit()
+
+    return redirect('/account')
