@@ -47,10 +47,10 @@ def login():
 
         # if the user doesn't exist or the password is incorrect
         flash(messages.INCORRECT_DETAILS, 'alert-danger')
-        return render_template('login.html')
+        return render_template('login.html', S=S)
 
     # For GET requests
-    return render_template('login.html')
+    return render_template('login.html', S=S)
 
 
 @auth_bp.route("/register", methods=["GET", "POST"])
@@ -102,7 +102,7 @@ def register():
                 break
 
     # For GET requests or any of the error states that broke from the loop above
-    return render_template("register.html")
+    return render_template("register.html", S=S)
 
 
 @auth_bp.route('/logout')
