@@ -1,49 +1,102 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {{_('Home')}}
+    {{_('Account')}}
 {% endblock %}
 
 {% block content %}
-    <div>{{_('Welcome')}}, {{ account.username }}. <br>
-    {{_('your first name is')}}: {{ account.f_name }} <br>
-    {{_('your surname is')}}: {{ account.surname }} <br>
-    {{_('your email is')}}: {{ account.email }} <br>
-    {{_('your language is')}} : {{ account.language }}<br><br></div>
-
-    <div>
-        {%  if stats %}
-            {% for key, value in stats.items() %}
-                {{ key }}: {{ value }} {{_('games')}} <br>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div>
-      <form action="/edit_account" method="get">
-          <button type="submit" value="Edit" class="btn btn-primary">{{_('Edit')}}</button>
-      </form>
-      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">{{_('Delete')}}</button>
-  </div>
-    <div class="modal fade" id="exampleModalCenter">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">{{_('Permanently Deleting Account')}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>{{_('Are you sure you want to delete your account?')}}<br>{{_('This action cannot be reversed.')}}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{_('Cancel')}}</button>
-
-            <form action="/delete_account" method="post">
-              <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
-          </div>
+    <article>
+        <h5>{{_('Account Details')}}</h5>
+        <div>
+            <p>{{_('Welcome')}}, {{ account.username }}.</p>
+            <p>{{_('Name')}}: {{ account.f_name }} <br>
+                {{_('Surname')}}: {{ account.surname }} <br>
+                {{_('Email')}}: {{ account.email }} <br>
+                {{_('Language')}}: {{ account.language }} <br>
+            </p>
         </div>
-      </div>
-    </div>
+
+
+        <div class="space-above-small">
+            <form action="/edit_account" method="get">
+                <button type="submit" value="Edit" class="btn btn-primary">{{_('Edit Account')}}</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModalCenter">{{_('Delete Account')}}</button>
+            </form>
+        </div>
+
+        <div class="modal fade" id="deleteModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">{{_('Permanently Deleting Account')}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{_('Are you sure you want to delete your account?')}}<br>
+                            {{_('This action cannot be reversed.')}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            {{_('Cancel')}}
+                        </button>
+                        <form action="/delete_account" method="post">
+                            <input type="submit" value="{{_('Delete Account')}}" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="space-above-large">
+        <div>
+            <p><h5>{{_('Player Details')}}</h5></p>
+            <div>
+
+                {%  if stats %}
+                    {% for key, value in stats.items() %}
+                        {{_('Player Name')}}: {{ key }}         {{ value }} {{_('games')}} <br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </article>
+
+    <article class="space-above-small">
+        <div>
+            <form action="/game" method="get">
+                <button type="submit" value="use_player" class="btn btn-primary">{{_('Use Player')}}</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addPlayerModalCenter">{{_('Add New Player')}}</button>
+            </form>
+        </div>
+        <div class="modal fade" id="addPlayerModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="title">{{_('Add New Player')}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{_('Please enter the name of the new player')}}.<br></p>
+                    </div>
+                    <form action="/add_player" method="post">
+                        <div class="form-group">
+                            <input id='playername' autocomplete="off" autofocus class="form-control" name="playername" type="text">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                {{_('Cancel')}}
+                            </button>
+                            <input type="submit" value="{{_('Add Player')}}" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </article>
+
 {% endblock %}
