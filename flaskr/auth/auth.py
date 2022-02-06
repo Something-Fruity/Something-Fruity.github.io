@@ -12,6 +12,7 @@ from flaskr.models.user import User
 from flaskr.labels import messages
 from flaskr.app import S
 
+
 auth_bp = Blueprint('auth', __name__, template_folder='templates/auth')
 session = Session()
 
