@@ -96,6 +96,7 @@ def register():
                 session.commit()
                 user = session.query(User).filter_by(username=new_username).first()
                 login_user(user)
+                session.commit()
 
                 return redirect('/account')
             except (InvalidEmailError, InvalidPasswordError) as error:
@@ -110,6 +111,5 @@ def register():
 def logout():
     """Log user out"""
     logout_user()
-    session.rollback()
     # Redirect user to login form
     return redirect("/login")

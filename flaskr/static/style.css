@@ -55,3 +55,18 @@ main img
   background-color: lightblue;
   font-weight: bold;
 }
+
+.space-above-large
+{
+    padding-top: 5em;
+}
+
+.space-above-medium
+{
+    padding-top: 3em;
+}
+
+.space-above-small
+{
+    padding-top: 1em;
+}
