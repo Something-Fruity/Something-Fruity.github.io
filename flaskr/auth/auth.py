@@ -10,7 +10,7 @@ from flaskr.models.base import Session
 from flaskr.models.user import User
 
 from flaskr.labels import messages
-
+from flaskr.app import S
 
 auth_bp = Blueprint('auth', __name__, template_folder='templates/auth')
 session = Session()
@@ -95,6 +95,7 @@ def register():
                 session.commit()
                 user = session.query(User).filter_by(username=new_username).first()
                 login_user(user)
+                session.commit()
 
                 return redirect('/account')
             except (InvalidEmailError, InvalidPasswordError) as error:
@@ -109,6 +110,5 @@ def register():
 def logout():
     """Log user out"""
     logout_user()
-    session.rollback()
     # Redirect user to login form
     return redirect("/login")
