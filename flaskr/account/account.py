@@ -39,6 +39,7 @@ def account():
 @account_bp.route("/delete_account", methods=["POST"])
 @login_required
 def delete_account():
+    """Permanently delete the account"""
     user = session.query(User).filter_by(id=current_user.id).first()
     session.delete(user)
     session.commit()
@@ -49,6 +50,7 @@ def delete_account():
 @account_bp.route("/edit_account", methods=["GET", "POST"])
 @login_required
 def edit_account():
+    """Edit the account details"""
     if request.method == "GET":
         return render_template('edit_account.html', account=current_user, S=S)
 
@@ -62,7 +64,7 @@ def edit_account():
         new_language = request.form.get("language")
 
         while True:
-            if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '':
+            if new_username == '' or new_f_name == '' or new_surname == '' or new_email == '' or new_language == '':
                 flash(ALL_FIELDS_REQUIRED, 'alert-danger')
                 break
 
@@ -88,17 +90,17 @@ def edit_account():
                 break
         return render_template('edit_account.html', account=current_user, S=S)
 
-    else:
-        # cancel was clicked
-        flash(NO_CHANGES_SAVED, 'alert-success')
-        return redirect('/account')
+    # cancel was clicked
+    flash(NO_CHANGES_SAVED, 'alert-success')
+    return redirect('/account')
 
 
 @account_bp.route("/add_player", methods=["POST"])
 @login_required
 def add_player():
-    playername = request.form.get('playername')
-    current_user.players.append(Player(current_user, playername))
+    """Create a new player and attach them to the user's account"""
+    player_name = request.form.get('playername')
+    current_user.players.append(Player(current_user, player_name))
     session.commit()
 
     return redirect('/account')

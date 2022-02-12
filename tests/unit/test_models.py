@@ -13,7 +13,7 @@ from flaskr.labels import messages
 
 def create_test_user():
     """Create and return a user"""
-    return User('heisenberg', 'my-password', 'walter', 'white', 'walter@white.com', date.today())
+    return User('heisenberg', 'my-password', 'walter', 'white', 'walter@white.com', date.today(), 'en')
 
 
 # pylint: disable=missing-function-docstring
@@ -42,7 +42,7 @@ class TestModels(unittest.TestCase):
         # when
         try:
             test_user = User(username='heisenberg', password='my-password', f_name='walter', surname='white',
-                             email='invalid_email', last_login=date.today())
+                             email='invalid_email', last_login=date.today(), language='en')
 
         # then
         except InvalidEmailError as error:

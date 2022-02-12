@@ -1,9 +1,10 @@
 """Initiate the application"""
 
-from flask import Flask, flash, redirect, request
+from flask import Flask, flash, redirect
 from flask import session as S
 
 from flask_login import LoginManager
+from flask_babel import Babel
 
 from flaskr.labels import messages
 
@@ -15,7 +16,6 @@ from flaskr.auth.auth import auth_bp
 from flaskr.account.account import account_bp
 from flaskr.languages.languages import language_bp
 
-from flask_babel import Babel, gettext
 
 login_manager = LoginManager()
 
@@ -42,17 +42,18 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    # return request.accept_languages.best_match(app.config['LANGUAGES'])    
-    if not "language" in S:
-        if not "ulanguage" in S:
+    """Returns the locale selected by the user"""
+    if "language" not in S:
+        if "ulanguage" not in S:
             S['language'] = 'en'
         else:
             return S['ulanguage']
-    return S['language']    
+    return S['language']
 
 
 @app.before_request
 def before_request():
+    """Ensure locale is checked before every request"""
     get_locale()
 
 
@@ -71,4 +72,3 @@ def unauthorized():
     """Redirect unauthorized users to Login page."""
     flash(messages.NOT_LOGGED_IN, 'alert-danger')
     return redirect('/login')
-
