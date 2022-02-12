@@ -53,11 +53,11 @@ msgstr "jeux"
 
 #: flaskr/account/templates/account.html:23
 msgid "Edit Account"
-msgstr "Éditer Compte"
+msgstr "Éditer le Compte"
 
 #: flaskr/account/templates/account.html:25
 msgid "Delete Account"
-msgstr "Supprimer Compte"
+msgstr "Supprimer le Compte"
 
 #: flaskr/account/templates/account.html:31
 msgid "Permanently Deleting Account"
@@ -148,7 +148,7 @@ msgstr "J'accepte"
 
 #: flaskr/auth/templates/auth/register.html:35
 msgid "terms and conditions"
-msgstr "les termes et conditions"
+msgstr "termes et conditions"
 
 #: flaskr/auth/templates/auth/register.html:35
 msgid " and have read the "
@@ -160,11 +160,11 @@ msgstr "la politique de confidentialité."
 
 #: flaskr/game/templates/game.html:4
 msgid "Something fruity GAME"
-msgstr "Something fruity JEU"
+msgstr "Something fruity le JEU"
 
 #: flaskr/game/templates/game.html:9
 msgid "This page will contain our browser game"
-msgstr "Cette page contiendra notre jeu par navigateur"
+msgstr "Cette page contiendra notre jeu via votre navigateur internet"
 
 #: flaskr/labels/messages.py:4
 msgid "There is already an account associated with this username."
@@ -200,7 +200,7 @@ msgstr "Aucune modification n'a été enregistrée."
 
 #: flaskr/labels/messages.py:12
 msgid "Your password and confirmation do not match."
-msgstr "Votre mot de passe et votre confirmation ne correspondent pas."
+msgstr "Vos mots de passe ne correspondent pas."
 
 #: flaskr/labels/messages.py:13
 msgid "You must be logged in to view that page."
@@ -215,7 +215,7 @@ msgid "Implemented in Python using the Flask framework"
 msgstr "Implémenté en Python à l'aide du framework Flask"
 
 msgid "Sound"
-msgstr "Sonner"
+msgstr "Son"
 
 msgid "Register"
 msgstr "S'inscrire"
@@ -252,4 +252,3 @@ msgstr "Veuillez entrer le nom du nouveau joueur"
 
 msgid "Your account details were updated successfully."
 msgstr "Les détails de votre compte ont été mis à jour avec succès."
-
