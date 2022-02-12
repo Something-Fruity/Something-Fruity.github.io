@@ -25,20 +25,20 @@
                 
                 {% if current_user.is_authenticated %}
                     <ul class="navbar-nav mr-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/account">Account</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/game">Game</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/account">{{_('Account')}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/game">{{_('Game')}}</a></li>
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/language">{% if S['language']=='fr' %}English - Anglaise{% else %}French - Française{% endif %}</a></button></li>
                         <li class="nav-item" id="sound"><a class="nav-link" href="javascript:void(0);" onclick="toggleSound()">{{_('Sound')}}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">{{_('Log Out')}}</a></li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/language">{% if S['language']=='fr' %}English - Anglaise{% else %}French - Française{% endif %}</a></li>
                         <li class="nav-item" id="sound1"><a class="nav-link" href="javascript:void(0);" onclick="toggleSound()">{{_('Sound')}}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">{{_('Log In')}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">{{_('Register')}}</a></li>
                     </ul>
                 {% endif %}
             </div>

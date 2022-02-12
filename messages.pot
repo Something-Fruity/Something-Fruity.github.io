@@ -215,3 +215,44 @@ msgstr ""
 msgid "Implemented in Python using the Flask framework"
 msgstr ""
 
+msgid "Sound"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Account Details"
+msgstr ""
+
+msgid "Player Details"
+msgstr ""
+
+msgid "Player Name"
+msgstr ""
+
+msgid "Use Player"
+msgstr ""
+
+msgid "Log Out"
+msgstr ""
+
+msgid "Game"
+msgstr ""
+
+msgid "Add Player"
+msgstr ""
+
+msgid "Add New Player"
+msgstr ""
+
+msgid "No changes were saved."
+msgstr ""
+
+msgid "Please enter the name of the new player"
+msgstr ""
+
+msgid "Your account details were updated successfully."
+msgstr "."
+
+
+
