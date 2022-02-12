@@ -19,45 +19,45 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: flaskr/account/templates/account.html:4
-msgid "Home"
-msgstr "Accueil"
+msgid "Account"
+msgstr "Compte"
 
 #: flaskr/account/templates/account.html:8
 #: flaskr/account/templates/stats.html:8 flaskr/game/templates/game.html:8
 msgid "Welcome"
-msgstr "Bienvenu/e"
+msgstr "Bienvenue"
 
 #: flaskr/account/templates/account.html:9
 #: flaskr/account/templates/stats.html:9
-msgid "your first name is"
-msgstr "Votre prénom"
+msgid "Name"
+msgstr "Prénom"
 
 #: flaskr/account/templates/account.html:10
 #: flaskr/account/templates/stats.html:10
-msgid "your surname is"
-msgstr "Votre nom"
+msgid "Surname"
+msgstr "Nom de famille"
 
 #: flaskr/account/templates/account.html:11
 #: flaskr/account/templates/stats.html:11
-msgid "your email is"
-msgstr "Votre e-mail"
+msgid "Email"
+msgstr "E-mail"
 
 #: flaskr/account/templates/account.html:12
 #: flaskr/account/templates/stats.html:12
-msgid "your language is"
-msgstr "Votre langue est"
+msgid "Language"
+msgstr "Langue"
 
 #: flaskr/account/templates/account.html:17
 msgid "games"
-msgstr "Les jeux"
+msgstr "jeux"
 
 #: flaskr/account/templates/account.html:23
-msgid "Edit"
-msgstr "Modifier"
+msgid "Edit Account"
+msgstr "Éditer Compte"
 
 #: flaskr/account/templates/account.html:25
-msgid "Delete"
-msgstr "Supprimer"
+msgid "Delete Account"
+msgstr "Supprimer Compte"
 
 #: flaskr/account/templates/account.html:31
 msgid "Permanently Deleting Account"
@@ -65,7 +65,7 @@ msgstr "Suppression définitive du compte"
 
 #: flaskr/account/templates/account.html:37
 msgid "Are you sure you want to delete your account?"
-msgstr "Êtes-vous sûr de vouloir supprimer votre compte ?"
+msgstr "Êtes-vous sûr de vouloir supprimer votre compte?"
 
 #: flaskr/account/templates/account.html:37
 msgid "This action cannot be reversed."
@@ -91,7 +91,7 @@ msgstr "Statistiques de jeu"
 #: flaskr/auth/templates/auth/login.html:4
 #: flaskr/auth/templates/auth/login.html:15
 msgid "Log In"
-msgstr "Connexion"
+msgstr "Ouvrir une session"
 
 #: flaskr/auth/templates/auth/login.html:10
 msgid "Username"
@@ -112,7 +112,7 @@ msgstr "Créez un nouveau compte ou"
 
 #: flaskr/auth/templates/auth/register.html:8
 msgid "login"
-msgstr "connexion"
+msgstr "Ouvrir une session"
 
 #: flaskr/auth/templates/auth/register.html:8
 msgid " if you have an account already"
@@ -140,7 +140,7 @@ msgstr "Anglaise"
 
 #: flaskr/auth/templates/auth/register.html:32
 msgid "french"
-msgstr "français"
+msgstr "française"
 
 #: flaskr/auth/templates/auth/register.html:35
 msgid "I accept the"
@@ -164,7 +164,7 @@ msgstr "Something fruity JEU"
 
 #: flaskr/game/templates/game.html:9
 msgid "This page will contain our browser game"
-msgstr "Cette page contiendra notre jeu via le navigateur internet"
+msgstr "Cette page contiendra notre jeu par navigateur"
 
 #: flaskr/labels/messages.py:4
 msgid "There is already an account associated with this username."
@@ -184,8 +184,7 @@ msgstr "Vous devez remplir tous les champs"
 
 #: flaskr/labels/messages.py:8
 msgid "INCORRECT DETAILS: Please check your details and try again."
-msgstr "INFORMATIONS INCORRECTES : veuillez vérifier vos informations et réessayer.
-"
+msgstr "INFORMATIONS INCORRECTES : veuillez vérifier vos informations et réessayer."
 
 #: flaskr/labels/messages.py:9
 msgid "Invalid email address."
@@ -205,19 +204,52 @@ msgstr "Votre mot de passe et votre confirmation ne correspondent pas."
 
 #: flaskr/labels/messages.py:13
 msgid "You must be logged in to view that page."
-msgstr "Vous devez être connecté pour voir cette page.
-"
+msgstr "Vous devez être connecté pour voir cette page."
 
 #: flaskr/labels/messages.py:14
-msgid ""
-"You must accept the terms and conditions to create and register a new "
-"account."
-msgstr "Vous devez accepter les termes et conditions pour créer et enregistrer un nouveau "
-"Compte."
+msgid "You must accept the terms and conditions to create and register a new account."
+msgstr "Vous devez accepter les termes et conditions pour créer et enregistrer un nouveau compte."
 
 #: flaskr/templates/base.html:60
 msgid "Implemented in Python using the Flask framework"
 msgstr "Implémenté en Python à l'aide du framework Flask"
 
 msgid "Sound"
-msgstr "Son"
+msgstr "Sonner"
+
+msgid "Register"
+msgstr "S'inscrire"
+
+msgid "Account Details"
+msgstr "Détails du Compte"
+
+msgid "Player Details"
+msgstr "Détails du Joueur"
+
+msgid "Player Name"
+msgstr "Nom du Joueur"
+
+msgid "Use Player"
+msgstr "Utiliser Joueur"
+
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+msgid "Game"
+msgstr "Jeu"
+
+msgid "Add Player"
+msgstr "Ajouter un Joueur"
+
+msgid "Add New Player"
+msgstr "Ajouter un Nouveau Joueur"
+
+msgid "No changes were saved."
+msgstr "Aucune modification n'a été enregistrée."
+
+msgid "Please enter the name of the new player"
+msgstr "Veuillez entrer le nom du nouveau joueur"
+
+msgid "Your account details were updated successfully."
+msgstr "Les détails de votre compte ont été mis à jour avec succès."
+
