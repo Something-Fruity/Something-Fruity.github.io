@@ -78,3 +78,26 @@ function bootCreate ()
         stateStart('demo',this)
     },this);
 }
+
+function create ()
+{
+    this.bg = this.add.image(0, 0, 'background_image').setOrigin(0).setInteractive();
+    this.bg.width = game.config.width;
+    this.bg.height = game.config.height;
+    this.bg.displayWidth = game.config.width;
+    this.bg.displayHeight = game.config.height;
+
+    this.player = this.add.sprite(0,0,'player_role').setOrigin(0.5,1).setScale(0.5);
+    this.player.setScale(this.player.scaleX*scale.X,this.player.scaleY*scale.Y);
+    Phaser.Display.Align.In.BottomCenter(this.player, this.bg);
+    this.player.getCoins = 0;
+
+    this.coins = this.physics.add.group();
+
+	var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+	cursors = this.input.keyboard.createCursorKeys();
+	pointsText = this.add.text(0,0,'Points: 0', style);
+	pointsText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+
+    this.dt = 0;
+}
