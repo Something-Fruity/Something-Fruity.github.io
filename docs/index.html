@@ -21,14 +21,15 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Introduction</a></li>
-							<li><a href="#one">Register New User</a></li>
-							<li><a href="#two">Login User</a></li>
-							<li><a href="#three">TBD</a></li>
-							<li><a href="#four">TBD</a></li>
-							<li><a href="#five">TBD</a></li>
-							<li><a href="#six">TBD</a></li>
-							<li><a href="#seven">TBD</a></li>
-							<li><a href="#eight">Privacy Policy</a></li>
+							<li><a href="#one">Requirements</a></li>
+							<li><a href="#two">Create an Account</a></li>
+							<li><a href="#three">Login</a></li>
+							<li><a href="#four">Profile/Account Dashboard</a></li>
+							<li><a href="#five">Game Dashboard and Player Details</a></li>
+							<li><a href="#six">Interface Navigation</a></li>
+							<li><a href="#seven">Multi-player Mode/ Single player mode</a></li>
+							<li><a href="#eight">Language and Privacy Policy</a></li>
+                            
 						</ul>
 					</nav>
 				</div>
@@ -38,1129 +39,127 @@
 			<div id="wrapper">
 
 				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Something Fruity User Docs</h1>
-							<p>User documentation for the web-based game 'Something Fruity'.<br /></p>
-							<h6>version 1.0.0</h6>
-						</div>
-					</section>
+                <section id="intro" class="wrapper style1 fullscreen fade-up">
+                    <div class="inner">
+                        <h1>Something Fruity User Docs</h1>
+                        <p>User documentation for the web-based game 'Something Fruity'.<br /></p>
+                        <p>Something Fruity is a game designed and implemented to be used by children. It’s fun, and its simple interface gives children an easy gaming dashboard.
+                               Its simplicity gives parents low involvement, meaning they don’t have to get involved every time their children need to play the game. It contains sound playing in the background as soon as the interface is engaged. 
+                               It adds up the enjoyment of the games by the user. However, it is also designed with a single keypress option to mute the sound depending on the user preference. Furthermore, you will need an internet connection to run the program since it is a web-based
+                        <h6>version 1.0.0</h6>
+                    </div>
+                </section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style1-alt spotlights">
+                <section id="one" class="wrapper style1-alt spotlights">
 					<div class="inner">
-						<h3 id="_get_accountsstudentid">GET  /accounts/student/{studentId}</h3>
-						Used to get an account by the external ID of the student associated with it. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-GET /accounts/student/c6666666 HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Host: localhost:8080
-                    					</code>
-                					</pre>
-						</div>
-						<div class="paragraph">
-							The following parameter must be provided:
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Parameter</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<p><code>studentId</code></p>
-									</td>
-									<td>
-										<p>The external ID of the student associated with this account.</p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-						The API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 200 OK
-Content-Type: application/hal+json
-Content-Length: 475
-{
-   "id":5,
-   "studentId":"c6666666",
-   "hasOutstandingBalance":false,
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/accounts/student/c6666666"
-      },
-      "accounts":{
-         "href":"http://localhost:8080/accounts"
-      }
-   }
-}
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in each account returned in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>id</code></p>
-								</td>
-								<td>
-									<p><code>Number</code></p>
-								</td>
-								<td>
-									<p>The internal ID of the account.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>studentId</code></p>
-								</td>
-								<td>
-									<p><code>String</code></p>
-								</td>
-								<td>
-									<p>The external student ID.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>hasOutstandingBalance</code></p>
-								</td>
-								<td>
-									<p><code>Boolean</code></p>
-								</td>
-								<td>
-									<p>Whether the account has an outstanding balance.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>self</code></p>
-								</td>
-								<td>
-									<p>Link to this resource.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>accounts</code></p>
-								</td>
-								<td>
-									<p>Link to all accounts.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
+						<p>In order to run the game, you are required to have the following hardware with at least the mention specifications:
+                        <p> Hardware:</p>
+                        <li>    Host machine (Windows or MacBook)
+                        <li>    At least 2GB RAM
+                        <li>    Keyboard
+                        <li>    Mouse
+                        <li>    Speaker 
+                        <li>    Display monitor
+                           
+                        <p>  Software:</p>
+                        <li>    Operating system (Windows, Ubuntu, Linux, MacOS)
+                        <li>    Browser (Google Chrome, Mozilla, Microsoft Edge)
 					</div>
-
 				</section>
 
 				<!-- Two -->
-					<section id="two" class="wrapper style1 spotlights">
+                <section id="two" class="wrapper style1 spotlights">
 					<div class="inner">
-						<h3 id="_post_accounts">POST  /accounts</h3>
-						Used to create a new account for a student. Send a POST request to the /accounts endpoint with a JSON body containing the external student ID. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-POST /accounts HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Content-Length: 25
-Host: localhost:8080
-
-{"studentId": "c3429928"}				</code>
-									</pre>
-						</div>
-						<div class="paragraph">
-							<p>The following fields must be provided when creating a new account:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 13%;">
-								<col style="width: 65%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>studentId</code></p>
-								</td>
-								<td>
-									<p><code>String</code></p>
-								</td>
-								<td>
-									<p>The external student ID.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-
-						Upon successful creation of a new account, the API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 201 Created
-Location: http://localhost:8080/accounts/student/c3429928
-Content-Type: application/hal+json
-Content-Length: 192
-
-{
-   "id":20,
-   "studentId":"c3429928",
-   "hasOutstandingBalance":false,
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/accounts/student/c3429928"
-      },
-      "accounts":{
-         "href":"http://localhost:8080/accounts"
-      }
-   }
-}
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in each account returned in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 13%;">
-								<col style="width: 65%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>id</code></p>
-								</td>
-								<td>
-									<p><code>Number</code></p>
-								</td>
-								<td>
-									<p>The internal ID of the account.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>studentId</code></p>
-								</td>
-								<td>
-									<p><code>String</code></p>
-								</td>
-								<td>
-									<p>The external student ID.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>hasOutstandingBalance</code></p>
-								</td>
-								<td>
-									<p><code>Boolean</code></p>
-								</td>
-								<td>
-									<p>Whether the account has an outstanding balance.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>self</code></p>
-								</td>
-								<td>
-									<p>Link to this resource.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>accounts</code></p>
-								</td>
-								<td>
-									<p>Link to all accounts.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
+                        <h3 id="">Create an Account</h3>
+                        <p>Before starting or playing the game, the user is prompted to register or log in in order to run the game.
+                           This is part of the security design of the system. It is mandatory for everyone who will be use the system:</p>
+                        <p>To play/ use the game, one needs to have an active account in which their profile is saved as well as the game progress as part of the design.
+                           To do this, the user is required to provide personal details, including; username, forename, surname, password, and email. On this page, the dashboard presents two actions, login and account creation.
+                           This is to cater to the users who already have an account and would like to proceed.</p>
+                        <img src="/images/create.jpg" width="700" height="500">
+                        <p>After filling in the details required for account registration, you will have to tick the checkbox showing that you have agreed to the terms and conditions and have read the privacy policy of the
+                           game in order to proceed with the registration process.</p>
 					</div>
-
 				</section>
 
 				<!-- Three -->
-					<section id="three" class="wrapper style1-alt spotlights">
+                <section id="three" class="wrapper style1-alt spotlights">
 					<div class="inner">
-						<h3 id="_get_accounts">GET  /accounts</h3>
-						Used to get a list of all the accounts in the system. Send a GET request to the /accounts endpoint. See the request sample below.
-						<div class="content">
-							<pre>
-                    					<code class="language-http" data-lang="http">
-GET /accounts HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Host: localhost:8080
-                    					</code>
-                					</pre>
-						</div>
-						The API sends back a response similar to the sample below.
-						<div class="content">
-							<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 200 OK
-Content-Type: application/hal+json
-Content-Length: 475
-{
-   "_embedded":{
-      "accountList":[
-         {
-            "id":7,
-            "studentId":"c6666666",
-            "hasOutstandingBalance":false,
-            "_links":{
-               "self":{
-                  "href":"http://localhost:8080/accounts/student/c6666666"
-               },
-               "accounts":{
-                  "href":"http://localhost:8080/accounts"
-               }
-            }
-         },
-         {
-            "id":8,
-            "studentId":"c9999999",
-            "hasOutstandingBalance":false,
-            "_links":{
-               "self":{
-                  "href":"http://localhost:8080/accounts/student/c9999999"
-               },
-               "accounts":{
-                  "href":"http://localhost:8080/accounts"
-               }
-            }
-         }
-      ]
-   },
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/accounts"
-      }
-   }
-}
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in each account returned in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 13%;">
-								<col style="width: 65%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>id</code></p>
-								</td>
-								<td>
-									<p><code>Number</code></p>
-								</td>
-								<td>
-									<p>The internal ID of the account.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>studentId</code></p>
-								</td>
-								<td>
-									<p><code>String</code></p>
-								</td>
-								<td>
-									<p>The external student ID.</p>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p><code>hasOutstandingBalance</code></p>
-								</td>
-								<td>
-									<p><code>Boolean</code></p>
-								</td>
-								<td>
-									<p>Whether the account has an outstanding balance.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td>
-									<p><code>self</code></p>
-								</td>
-								<td>
-									<p>Link to this resource.</p>
-								</td>
-							</tr>
-							</tbody>
-						</table>
+						<h3 id="login">Login</h3>
+						<p>As soon as the user or player has created their own account on the create an account dashboard, the user is directed to the login page, where you are prompted to enter the initial details, you registered with. 
+                        On authentication (login and account creation), the game uses session cookies to represent the users’ sessions. In this manner, the player’s username is used to identify him/ her while playing the game or during an active session. When logging off, the session is simply terminated/ destroyed; 
+                        hence the name disappears.</p>
+                        <img src="/images/Login.jpg" width="700" height="500">
+						
+                        <p>The interface shown above requires one to provide personal details as displayed, including the name and passwords. An authentication password is validated twice for security reasons. As such,
+                        a password is suggested to be at least 8 characters with at least one UPPER CASE, ONE SPECIAL CHARACTERS, and a NUMBER.</P>
 					</div>
-
 				</section>
 
 				<!-- Four -->
-					<section id="four" class="wrapper style1 spotlights">
+                <section id="four" class="wrapper style1 spotlights">
 					<div class="inner">
-						<h3 id="_get_invoicesreferenceref">GET  /invoices/reference/{reference}</h3>
-						Used to get an invoice by its unique external reference. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-GET /invoices/reference/BAX5SPP5 HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Host: localhost:8080
-                    					</code>
-                					</pre>
-						</div>
-						<div class="paragraph">
-							The following parameter must be provided:
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-								<tr>
-									<th>Parameter</th>
-									<th>Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<p><code>reference</code></p>
-									</td>
-									<td>
-										<p>The external reference of the invoice to return.</p>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-
-						The API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 200 OK
-Content-Type: application/hal+json
-Content-Length: 397
-{
-   "id":10,
-   "reference":"BAX5SPP5",
-   "amount":10.5,
-   "dueDate":"2021-12-25",
-   "type":"TUITION_FEES",
-   "status":"OUTSTANDING",
-   "studentId":"c6666666",
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/invoices/reference/BAX5SPP5"
-      },
-      "invoices":{
-         "href":"http://localhost:8080/invoices"
-      },
-      "cancel":{
-         "href":"http://localhost:8080/invoices/BAX5SPP5/cancel"
-      },
-      "pay":{
-         "href":"http://localhost:8080/invoices/BAX5SPP5/pay"
-      }
-   }
-}
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in each account returned in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>id</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The internal ID of the invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>reference</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external invoice reference used to pay an invoice via the Payment Portal.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>amount</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The invoice amount.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>dueDate</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The date the invoice must be paid by.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>type</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The type of invoice. Types currently enabled are: LIBRARY_FINE and TUITION_FEES.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>status</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The status of the invoice: OUTSTANDING, PAID or CANCELLED.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>studentId</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external ID of the student responsible for paying this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>self</code></p></td>
-								<td><p>Link to this resource.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>invoices</code></p></td>
-								<td><p>Link to all invoices.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>cancel</code></p></td>
-								<td><p>Link to cancel this invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>pay</code></p></td>
-								<td><p>Link to pay this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
+						<h3 id="prof">Profile/Account Dashboard</h3>
+						<p>After successful authentication, the users are provided with a dashboard to allow them to change/ edit their personal details. This also includes the delete functionality where all the player’s details and progress are deleted from the system once authorized to do so. This information can be retrieved on the account button, 
+                        and the game button redirects to the actual playing canvas on the displayed navigation bar.</p>
+                    <img src="/images/profile.jpg" width="700" height="500">
+						<p>The interface above illustrates the user’s profile from which he/ she can alter depending on what is needed to edit it or delete it entirely. </p>
 					</div>
-
 				</section>
 
 				<!-- Five -->
-					<section id="five" class="wrapper style1-alt spotlights">
+                <section id="five" class="wrapper style1-alt spotlights">
 					<div class="inner">
-						<h3 id="_post_invoices">POST  /invoices</h3>
-						Used to create a new invoice. Send a POST request to the /invoices endpoint with a JSON body containing the required fields. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-POST /invoices HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Content-Length: 102
-Host: localhost:8080
-{
-   "amount":15.00,
-   "dueDate":"2021-11-06",
-   "type":"LIBRARY_FINE",
-   "account":{
-      "studentId":"c6666666"
-   }
-}
-                    					</code>
-                					</pre>
-						</div>
-						<div class="paragraph">
-							The following fields must be provided when creating a new invoice:
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>amount</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The invoice amount.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>dueDate</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The date the invoice must be paid by (yyyy-MM-dd).</p></td>
-							</tr>
-							<tr>
-								<td><p><code>type</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The type of invoice. Types currently enabled are: LIBRARY_FINE and TUITION_FEES.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>account.studentId</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external ID of the student responsible for paying this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
-
-						Upon successful creation of a new invoice, the API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 201 Created
-Location: http://localhost:8080/invoices/31
-Content-Type: application/hal+json
-Content-Length: 397
-{
-   "id":31,
-   "reference":"9WPOUBGF",
-   "amount":15.0,
-   "dueDate":"2021-11-06",
-   "type":"LIBRARY_FINE",
-   "status":"OUTSTANDING",
-   "studentId":"c6666666",
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/invoices/reference/9WPOUBGF"
-      },
-      "invoices":{
-         "href":"http://localhost:8080/invoices"
-      },
-      "cancel":{
-         "href":"http://localhost:8080/invoices/9WPOUBGF/cancel"
-      },
-      "pay":{
-         "href":"http://localhost:8080/invoices/9WPOUBGF/pay"
-      }
-   }
-}
-
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>id</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The internal ID of the invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>reference</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external invoice reference used to pay an invoice via the Payment Portal.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>amount</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The invoice amount.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>dueDate</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The date the invoice must be paid by.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>type</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The type of invoice. Types currently enabled are: LIBRARY_FINE and TUITION_FEES.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>status</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The status of the invoice: OUTSTANDING, PAID or CANCELLED.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>studentId</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external ID of the student responsible for paying this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>self</code></p></td>
-								<td><p>Link to this resource.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>invoices</code></p></td>
-								<td><p>Link to all invoices.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>cancel</code></p></td>
-								<td><p>Link to cancel this invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>pay</code></p></td>
-								<td><p>Link to pay this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
+						<h3 id="dash">Game Dashboard and Player Details</h3>
+						<p>The game progress can be saved on the game dashboard to be resumed later with the same session ID, 
+                           the player’s username. In this case, the pause functionality temporarily halts the game, quit functionality cancels the game entirely.</p>
+                       <img src="/images/game_dash.jpg" width="700" height="500">
+                       <p>Logout Button:</p>
+                       <p>This control button enables the user to log out or terminate the game session and completely log out of the game. 
+                          It is located at the top left corner of each dashboard. See the above screenshots</p>
+                       <p>Persona:</p>
+                       <p>Something Fruity allows the players to use fictional characters as personas for interactivity. In this way, the players can opt to use their own personal photos from the webcam or use the avatars provided in the game. However, the username/ session ID is retained and sustained throughout the game along with the persona, 
+                          which can be changed at any given time provided the user is still authenticated and an active user. </p>
+                       <p>Player Details:</p>
+                       <p>Every account has a number of players associated with the account. The player’s name is shown with the corresponding number of games of the specific account. Under player details, 
+                          you have two buttons which include use player and add player, as shown in the figure below.</p>
+                       <img src="/images/player.jpg" width="700" height="500">
+                       <p>The above figure shows the account details after a successful login. The account dashboard consists of account and associated player details.</p>
+                       <p>Use Player:</p>
+                       <p>Clicking on the use player button enables you to navigate the gameplay page. Clicking add player lets you add a new player to the account. 
+                          This means that the associated account can choose the persona they have created that they want to play with. The figure below shows the gameplay page after clicking use player.</p>
 					</div>
-
 				</section>
 
 				<!-- Six -->
-					<section id="six" class="wrapper style1 spotlights">
+                <section id="six" class="wrapper style1 spotlights">
 					<div class="inner">
-						<h3 id="_get_invoices">GET  /invoices</h3>
-						Used to get a list of all the invoices in the system. Send a GET request to the /invoices endpoint. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-GET /invoices HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Host: localhost:8080
-                    					</code>
-                					</pre>
-						</div>
-						The API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 200 OK
-Content-Type: application/hal+json
-Content-Length: 1018
-
-{
-   "_embedded":{
-      "invoiceList":[
-         {
-            "id":13,
-            "reference":"CYK1U7RA",
-            "amount":10.5,
-            "dueDate":"2021-12-25",
-            "type":"TUITION_FEES",
-            "status":"OUTSTANDING",
-            "studentId":"c6666666",
-            "_links":{
-               "self":{
-                  "href":"http://localhost:8080/invoices/reference/CYK1U7RA"
-               },
-               "invoices":{
-                  "href":"http://localhost:8080/invoices"
-               },
-               "cancel":{
-                  "href":"http://localhost:8080/invoices/CYK1U7RA/cancel"
-               },
-               "pay":{
-                  "href":"http://localhost:8080/invoices/CYK1U7RA/pay"
-               }
-            }
-         },
-         {
-            "id":14,
-            "reference":"HBOKJX7U",
-            "amount":5.3,
-            "dueDate":"2022-01-10",
-            "type":"LIBRARY_FINE",
-            "status":"PAID",
-            "studentId":"c6666666",
-            "_links":{
-               "self":{
-                  "href":"http://localhost:8080/invoices/reference/HBOKJX7U"
-               },
-               "invoices":{
-                  "href":"http://localhost:8080/invoices"
-               }
-            }
-         },
-         {
-            "id":15,
-            "reference":"OTN7VGQQ",
-            "amount":1.0,
-            "dueDate":"2022-02-28",
-            "type":"LIBRARY_FINE",
-            "status":"CANCELLED",
-            "studentId":"c6666666",
-            "_links":{
-               "self":{
-                  "href":"http://localhost:8080/invoices/reference/OTN7VGQQ"
-               },
-               "invoices":{
-                  "href":"http://localhost:8080/invoices"
-               }
-            }
-         }
-      ]
-   },
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/invoices"
-      }
-   }
-}
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in each account returned in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>id</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The internal ID of the invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>reference</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external invoice reference used to pay an invoice via the Payment Portal.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>amount</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The invoice amount.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>dueDate</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The date the invoice must be paid by.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>type</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The type of invoice. Types currently enabled are: LIBRARY_FINE and TUITION_FEES.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>status</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The status of the invoice: OUTSTANDING, PAID or CANCELLED.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>studentId</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external ID of the student responsible for paying this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>self</code></p></td>
-								<td><p>Link to this resource.</p></td>
-							</tr>
-							</tbody>
-						</table>
+						<h3 id="interface">Interface Navigation</h3>
+						<p>The keyboard will be used to navigate the game’s canvas. The UP arrow moves the cursor upwards. The DOWN arrow moves the cursor downwards. The LEFT arrow moves the cursor left of the screen while the RIGHT arrow moves the cursor to the right of the screen. The sound can also be controlled using keyboard input where the keyboard’s mute key will mute the game as well as from the game’s 
+                           interface where one keypress also mutes the game.</p>
 					</div>
-
 				</section>
 
 				<!-- Seven -->
-					<section id="seven" class="wrapper style1 spotlights">
+                <section id="seven" class="wrapper style1 spotlights">
 					<div class="inner">
-						<h3 id="_put_invoicesrefpay">PUT  /invoices/{reference}/pay</h3>
-						Used to pay an invoice. Send a PUT request to the /invoices/{reference}/pay endpoint. The body of the request must be empty. See the request sample below.
-						<div class="content">
-                					<pre>
-                    					<code class="language-http" data-lang="http">
-PUT /invoices/YOQOF4SI/pay HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Host: localhost:8080
-                    					</code>
-                					</pre>
-						</div>
-						The following parameter must be provided when paying an invoice:
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Parameter</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>reference</code></p></td>
-								<td><p>The external reference of the invoice to pay.</p></td>
-							</tr>
-							</tbody>
-						</table>
-						Upon successful payment, the API sends back a response similar to the sample below.
-						<div class="content">
-                    				<pre>
-                        				<code class="language-http" data-lang="http">
-HTTP/1.1 200 OK
-Content-Type: application/hal+json
-Content-Length: 262
-{
-   "id":35,
-   "reference":"YOQOF4SI",
-   "amount":10.5,
-   "dueDate":"2021-12-25",
-   "type":"TUITION_FEES",
-   "status":"PAID",
-   "studentId":"c6666666",
-   "_links":{
-      "self":{
-         "href":"http://localhost:8080/invoices/reference/YOQOF4SI"
-      },
-      "invoices":{
-         "href":"http://localhost:8080/invoices"
-      }
-   }
-}
-
-                        				</code>
-                    				</pre>
-						</div>
-						<p>The following fields are included in the response:</p>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 15%;">
-								<col style="width: 63%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Path</th>
-								<th>Type</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>id</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The internal ID of the invoice.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>reference</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external invoice reference used to pay an invoice via the Payment Portal.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>amount</code></p></td>
-								<td><p><code>Number</code></p></td>
-								<td><p>The invoice amount.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>dueDate</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The date the invoice must be paid by.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>type</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The type of invoice. Types currently enabled are: LIBRARY_FINE and TUITION_FEES.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>status</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The status of the invoice: OUTSTANDING, PAID or CANCELLED.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>studentId</code></p></td>
-								<td><p><code>String</code></p></td>
-								<td><p>The external ID of the student responsible for paying this invoice.</p></td>
-							</tr>
-							</tbody>
-						</table>
-						<div class="paragraph">
-							<p>The following links are included in the response:</p>
-						</div>
-						<table>
-							<colgroup>
-								<col style="width: 22%;">
-								<col style="width: 78%;">
-							</colgroup>
-							<thead>
-							<tr>
-								<th>Relation</th>
-								<th>Description</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><p><code>self</code></p></td>
-								<td><p>Link to this resource.</p></td>
-							</tr>
-							<tr>
-								<td><p><code>invoices</code></p></td>
-								<td><p>Link to all invoices.</p></td>
-							</tr>
-							</tbody>
-						</table>
+						<h3 id="multi">Multi-player Mode/ Single player mode</h3>
+						<p>This is a feature in gaming that allows the players or the users from different physical locations to play or rather use the system. The players can therefore join a session while the channel is open. The player can also send invitations to other users to join their session. This makes use of the session IDs to identify the players uniquely. The multiplayer mode is facilitated by a button that, when pressed, 
+                           displays invitations and open channels from which the respective player can join.</p>
 					</div>
-
 				</section>
 
 				<!-- Eight -->
-					<section id="eight" class="wrapper style1 spotlights">
+                <section id="eight" class="wrapper style1 spotlights">
 					<div class="inner">
-						<h3 id="privacy">Privacy Policy</h3>
-						Something Fruity is part of the Something Fruity Group which includes Something Fruity International and Something Fruity Direct. This privacy policy will explain how our organisation uses the personal data we collect from you when you use our website.
+						<h3 id="language">Language and Privacy Policy</h3>
+					   <p>Language:</p>
+                       <p>Something Fruity supports multi languages; therefore, it has English and French as pre-installed languages on downloading. 
+                        However, additional languages are available as a free download pack. This gives the user a wide range of language and options to choose which one fits better to interact with.</p>
+                        <p> </p>
+                        <p>Privacy Policy:</p>
+                        Something Fruity is part of the Something Fruity Group which includes Something Fruity International and Something Fruity Direct. This privacy policy will explain how our organisation uses the personal data we collect from you when you use our website.
 
 						<table>
 							<colgroup>
@@ -1239,18 +238,18 @@ Content-Length: 262
 																				&nbsp;&nbsp;by mail:&nbsp;&nbsp;&nbsp;Something Fruity, University of Essex Online.
 									</td>
 								</tr>
-								</tbody>
+                            </tbody>
 						</table>
 					</div>
 				</section>
 			</div>
-
+                    
 		<!-- Footer -->
 		<footer id="footer" class="wrapper style1-alt">
 			<div class="inner">
 				<ul class="menu">
-						<li>&copy <a href="https://github.com/tvergilio">Thalita Vergilio</a> 2022. All rights reserved.</li><li>Template: <a href="https://html5up.net">HTML5 UP</a></li>
-					</ul>
+                    <li>&copy <a href="https://github.com/Something-Fruity/Something-Fruity.github.io">Something Fruity</a> 2022. All rights reserved.</li><li>Template: <a href="https://html5up.net">HTML5 UP</a></li>
+                </ul>
 			</div>
 		</footer>
 
@@ -1262,7 +261,6 @@ Content-Length: 262
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
 
