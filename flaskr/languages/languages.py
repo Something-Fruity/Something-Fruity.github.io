@@ -1,19 +1,18 @@
-from flask import redirect
-from flask import Blueprint
-from flask import request
-from flaskr.app import S
+"""Controls the language displayed in the application"""
+from flask import redirect, request, Blueprint
 
+from flaskr.app import S
 
 language_bp = Blueprint('language_bp', __name__, template_folder='templates')
 
+
 @language_bp.route("/language")
-def lang():
+def toggle_language():
+    """Toggle between languages"""
     current_language = S['language']
-    if current_language == 'fr':
-        S['language'] = 'en'
-    else:
-        S['language'] = 'fr'
-    if not 'current_url' in S:
-        r = request.url_rule
-        S['current_url'] = r.rule
+    S['language'] = 'en' if current_language == 'fr' else 'fr'
+
+    if 'current_url' not in S:
+        req = request.url_rule
+        S['current_url'] = req.rule
     return redirect(S['current_url'])
