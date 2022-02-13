@@ -101,3 +101,78 @@ function create ()
 
     this.dt = 0;
 }
+function update ()
+{
+    
+    if (gameCase!==1) {
+        return false;
+    }
+	pointsText.setText('Points:'+this.player.getCoins);
+	console.log(this.player.getCoins)
+
+    this.dt++;
+    if (this.dt%100==0) {
+        for (let i = 0; i < 10; i++) {
+            let coin = this.coins.create(0,0,'berry').setOrigin(0).setScale(0.5);
+            let rnd = Phaser.rnd.between(1,5);
+            switch (rnd) {
+                case 1:
+                    coin.setTexture("apple");
+                    break;
+                case 2:
+                    coin.setTexture("banana");
+                    break;
+                case 3:
+                    coin.setTexture("berry");
+                    break;
+                case 4:
+                	coin.setTexture("berrya");
+                	break;
+                default:
+                    coin.setTexture("bomb");
+                    break;
+            }
+            coin.setGravityY(50);
+            coin.setX(Phaser.rnd.between(0,game.config.width-this.coins.children.entries[i].width*this.coins.children.entries[i].scaleX));
+            coin.setY(Phaser.rnd.between(0,-10000));
+            coin.setScale(coin.scaleX*scale.X,coin.scaleY*scale.Y);
+        }
+    }
+
+   	if (cursors.left.isDown){
+   		this.player.x-= 10;
+   	}
+   	if (cursors.right.isDown){
+   		this.player.x+= 10;
+   	}
+   	
+
+    for (let i = 0; i < this.coins.children.entries.length; i++) {
+        if (checkOverlap(this.player, this.coins.children.entries[i])) {
+            let key = this.coins.children.entries[i].texture.key;
+            switch (key) {
+                case "apple":
+                    this.player.getCoins += 1;
+                    break;
+                case "banana":
+                    this.player.getCoins += 5;
+                    break;
+                case "berry":
+                    this.player.getCoins += 10;
+                    break;
+                case "berrya":
+                    this.player.getCoins += 15;
+                    break;
+                case "bomb":
+                    gameCase = 3;
+                    gameCoins = this.player.getCoins;
+                    stateStart('over',this);
+                    break;
+                default:
+                    break;
+            }
+            this.coins.children.entries[i].destroy();
+         }
+        
+    } 
+ }
