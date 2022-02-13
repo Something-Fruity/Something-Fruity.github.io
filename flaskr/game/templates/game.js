@@ -209,3 +209,29 @@ function update ()
     },this);
 
 }
+function stateStart(state,stateOld){
+    stateOld.scene.setVisible(false)
+    game.scene.start(state);
+}
+
+function checkOverlap(spriteA, spriteB) {
+
+        var boundsA = spriteA.getBounds();
+        var boundsB = spriteB.getBounds();
+        return IsRectCross(boundsA,boundsB);
+
+    }
+function IsRectCross(rect1, rect2)
+{
+    if(rect1.right <= rect2.left) return false;
+    if(rect1.left >= rect2.right ) return false;
+
+    if(rect1.bottom <= rect2.top ) return false;
+    if(rect1.top >= rect2.bottom ) return false;
+
+    return true;
+}
+Phaser.rnd = {};
+Phaser.rnd.between = function (min,max){
+    return Math.floor(Math.random()*(max + 1 - min) + min);
+}
