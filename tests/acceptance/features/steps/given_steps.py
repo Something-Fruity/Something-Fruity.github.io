@@ -129,7 +129,7 @@ def step_impl(context):
 
 @when('the user clicks register in the menu')
 def step_impl(context):
-    context.browser.find_element_by_link_text('Register').click()
+    context.browser.find_element_by_id('reg-menu').click()
 
 
 @when('the player navigates to the persona page')
