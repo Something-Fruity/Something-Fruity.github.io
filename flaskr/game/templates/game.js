@@ -51,15 +51,15 @@ var gameCoins = 0;
 var pointsText;
 function bootLoader ()
 {
-    this.load.image('btnStart', 'assets/images/start.png');
-    this.load.image('apple', 'assets/images/apple.png');
-    this.load.image('banana', 'assets/images/banana.png');
-    this.load.image('berry', 'assets/images/berry.png');
-    this.load.image('berrya', 'assets/images/pear.png');
-    this.load.image('bomb', 'assets/images/warm.png');
-    this.load.image('background_image', 'assets/images/bj.jpg');
-    this.load.image('player_role', 'assets/images/ren.png');
-    this.load.image('blackboard', 'assets/images/blackboard.png');
+    this.load.image('btnStart', '../../static/game/assets/images/start.png');
+    this.load.image('apple', '../../static/game/assets/images/apple.png');
+    this.load.image('banana', '../../static/game/assets/images/banana.png');
+    this.load.image('berry', '../../static/game/assets/images/berry.png');
+    this.load.image('berrya', '../../static/game/assets/images/pear.png');
+    this.load.image('bomb', '../../static/game/assets/images/warm.png');
+    this.load.image('background_image', '../../static/game/assets/images/bj.jpg');
+    this.load.image('player_role', '../../static/game/assets/images/ren.png');
+    this.load.image('blackboard', '../../static/game/assets/images/blackboard.png');
 }
 
 function bootCreate ()
