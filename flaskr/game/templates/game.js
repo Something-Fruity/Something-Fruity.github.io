@@ -176,3 +176,36 @@ function update ()
         
     } 
  }
+ function gameoverState(){
+    this.bg = this.add.image(0, 0, 'background_image').setOrigin(0);
+    this.bg.width = game.config.width;
+    this.bg.height = game.config.height;
+    this.bg.displayWidth = game.config.width;
+    this.bg.displayHeight = game.config.height;
+
+    this.blackboard = this.add.image(0,0,'blackboard').setOrigin(0);
+    this.blackboard.width = game.config.width;
+    this.blackboard.displayWidth = game.config.width;
+    this.blackboard.height = game.config.height/3.5;
+    this.blackboard.displayHeight = this.blackboard.height;
+    this.blackboard.y = game.config.height/3.5;
+
+    this.overText = this.add.text(0,0,'Game Over');
+    this.overText.setFontSize(108);
+    this.overText.setColor('#000');
+    Phaser.Display.Align.To.TopCenter(this.overText, this.blackboard);
+
+    this.coinsText = this.add.text(0,0,'Points:'+gameCoins);
+    this.coinsText.setFontSize(72);
+    this.coinsText.setColor('#fff');
+    Phaser.Display.Align.In.Center(this.coinsText, this.blackboard);
+
+    this.btnStart = this.add.image(0,0,'btnStart').setOrigin(0).setInteractive();
+    Phaser.Display.Align.To.BottomCenter(this.btnStart,this.blackboard);
+    this.btnStart.y += this.btnStart.height;
+    this.btnStart.on("pointerdown",function(pointer){
+        gameCase = 1;
+        stateStart('demo',this)
+    },this);
+
+}
