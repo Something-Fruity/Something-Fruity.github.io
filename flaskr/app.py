@@ -61,8 +61,6 @@ def before_request():
 def load_user(user_id):
     """Check if user is logged-in on every page load."""
     if user_id is not None:
-        user = session.query(User).get(user_id)
-        S['ulanguage'] = user.language
         return session.query(User).get(user_id)
     return None
 

@@ -1,5 +1,6 @@
 """Unit tests for the classes used to store the db models"""
-from flask_testing import TestCase
+import io
+from unittest import TestCase
 
 from flaskr.app import create_app
 

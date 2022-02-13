@@ -70,6 +70,7 @@ def register():
                     or new_password == '' \
                     or new_f_name == '' \
                     or new_surname == '' \
+                    or new_language == ''\
                     or new_email == '':
                 flash(messages.ALL_FIELDS_REQUIRED, 'alert-danger')
                 break
@@ -94,7 +95,7 @@ def register():
                             new_email, date.today(), new_language)
                 session.add(user)
                 session.commit()
-                user = session.query(User).filter_by(username=new_username).first()
+                user = session.query(User).get(user.id)
                 login_user(user)
                 session.commit()
 
