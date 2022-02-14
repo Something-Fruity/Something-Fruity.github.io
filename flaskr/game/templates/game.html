@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.1.0/phaser.min.js" integrity="sha512-rvrXrqi0P2D/bpxUsPEjWVTBuGb3fQ0DsjyDPQqr4bwwRyzFQzXwYwI48AQK5gQHzGIXJM73HAr57jz0t2soLg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% block title %}
 {{_('Something fruity GAME')}}
 {% endblock %}
@@ -7,4 +7,6 @@
 {% block content %}
 {{_('Welcome')}}, {{ account.f_name }}. <br>
 {{_('This page will contain our browser game')}}
+
 {% endblock %}
+<script src="game.js"></script>
